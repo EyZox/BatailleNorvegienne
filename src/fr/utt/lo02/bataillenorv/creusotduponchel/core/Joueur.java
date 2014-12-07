@@ -29,7 +29,7 @@ public class Joueur {
 	 * @param listeDesJoueurs la liste des joueurs incluant le joueur qui distribue
 	 * @param pioche la pioche de carte a distribuer
 	 */
-	public void distribuer(List<Joueur> listeDesJoueurs, Queue<Carte> pioche){
+	void distribuer(List<Joueur> listeDesJoueurs, Queue<Carte> pioche){
 		for(int i = 0; i<3; i++) {
 			for(Joueur joueur : listeDesJoueurs) {
 				joueur.main.add(pioche.poll());
@@ -43,14 +43,14 @@ public class Joueur {
 	 * Ajoute une carte dans la main du joueur
 	 * @param carte la carte piochée
 	 */
-	public void piocher(Carte carte){
+	void piocher(Carte carte){
 		this.main.add(carte);
 	}
 
 	/**
 	 * Echange ses cartes de la main avec ses cartes visible
 	 */
-	public void echanger(){
+	void echanger(){
 		CoupleEchangeCarte cartes;
 		do {
 			cartes = strategie.choisirCarteEchanger();
@@ -67,7 +67,7 @@ public class Joueur {
 	/**
 	 * Recupère les cartes visibles dans sa main
 	 */
-	public void piocherVisibles(){
+	void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
 	}
@@ -75,7 +75,7 @@ public class Joueur {
 	/**
 	 * Pioche une carte parmis ses cartes cachees et l'ajoute a sa main
 	 */
-	public void piocherCachee(){
+	void piocherCachee(){
 		Carte carte;
 		do {
 			carte = strategie.choisirCachee();
@@ -87,7 +87,7 @@ public class Joueur {
 	 * Ramasse le tas de carte et l'ajoute a sa main
 	 * @param tas
 	 */
-	public void ramasserTas(Collection<Carte> tas){
+	void ramasserTas(Collection<Carte> tas){
 		this.main.addAll(tas);
 		tas.clear();
 	}
