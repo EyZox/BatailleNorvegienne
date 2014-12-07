@@ -7,9 +7,10 @@ public class Carte {
 	}
 	
 	public boolean peutEtreJoueeSur(Carte carte){
-		if(this.valeur==2)
-			return true;
-		else return this.valeur>=carte.getValeur();
+		if(carte.valeur == 7) {
+			return this.valeur<=carte.getValeur();
+		}
+		return this.valeur>=carte.getValeur();
 	}
 	
 	public int getValeur(){
