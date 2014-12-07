@@ -70,4 +70,16 @@ public class Joueur {
 		tas.clear();
 	}
 
+	public ArrayList<Carte> getMain() {
+		return main;
+	}
+
+	public ArrayList<Carte> getVisibles() {
+		return visibles;
+	}
+	
+	List<Carte> getCachees() {
+		return cachees;
+	}
+
 }
