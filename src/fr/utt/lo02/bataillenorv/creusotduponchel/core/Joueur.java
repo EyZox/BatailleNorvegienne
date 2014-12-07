@@ -1,6 +1,7 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
@@ -23,7 +24,7 @@ public class Joueur {
 		Joueur.nombredejoueurs++;
 	}
 
-	public void distribuer(ArrayList<Joueur> listeDesJoueurs, Queue<Carte> pioche){
+	public void distribuer(List<Joueur> listeDesJoueurs, Queue<Carte> pioche){
 		for(int i = 0; i<3; i++) {
 			for(Joueur joueur : listeDesJoueurs) {
 				joueur.main.add(pioche.poll());
