@@ -109,6 +109,15 @@ public class Joueur {
 	}
 	
 	/**
+	 * Retourne le nombre de carte que le joueur possède face cachée
+	 * @return le nombre de carte face cachée
+	 */
+	public int getNbCachees() {
+		return cachees.size();
+	}
+	
+	
+	/**
 	 * Retourne la liste des cartes cachees du joueur
 	 * @return liste des cartes cachees
 	 */

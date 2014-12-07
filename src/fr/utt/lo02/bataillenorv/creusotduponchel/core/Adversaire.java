@@ -27,7 +27,7 @@ public class Adversaire {
 	 * @return le nombre de carte face cachée
 	 */
 	public int getNbCachees() {
-		return joueur.getCachees().size();
+		return joueur.getNbCachees();
 	}
 	
 	/**

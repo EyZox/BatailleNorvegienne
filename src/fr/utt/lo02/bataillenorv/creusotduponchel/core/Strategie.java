@@ -8,5 +8,5 @@ public interface Strategie {
 	CoupleEchangeCarte choisirCarteEchanger();
 	Collection<Carte> choisirCarteAPoser(Carte derniereCarte);
 	Carte choisirCachee();
-	String choisirJoueur();
+	Joueur choisirJoueur();
 }
