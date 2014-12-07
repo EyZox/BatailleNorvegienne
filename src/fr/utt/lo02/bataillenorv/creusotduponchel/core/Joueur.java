@@ -46,9 +46,12 @@ public class Joueur {
 		this.visibles.clear();
 	}
 	
-	public void piocherCachee(Carte carteCachee){
-		if(this.cachees.contains(carteCachee))
-			this.main.add(this.cachees.remove(this.cachees.indexOf(carteCachee)));
+	public void piocherCachee(){
+		Carte carte;
+		do {
+			carte = strategie.choisirCachee();
+		}while(!this.cachees.remove(carte));
+		this.main.add(carte);
 	}
 	
 	public void ramasserTas(LinkedList<Carte> tas){
