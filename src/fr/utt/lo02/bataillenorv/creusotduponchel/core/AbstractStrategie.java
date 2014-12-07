@@ -1,10 +1,11 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class AbstractStrategie implements Strategie {
 
-	protected Collection<Adversaire> adversaires;
+	protected List<Adversaire> adversaires;
 	protected Joueur joueur;
 	
 	public AbstractStrategie(Joueur joueur, Collection<Joueur> listeJoueur) {

@@ -76,11 +76,11 @@ public class Joueur {
 	 * Pioche une carte parmis ses cartes cachees et l'ajoute a sa main
 	 */
 	void piocherCachee(){
-		Carte carte;
+		int indice;
 		do {
-			carte = strategie.choisirCachee();
-		}while(!this.cachees.remove(carte));
-		this.main.add(carte);
+			indice = strategie.choisirCachee();
+		}while(indice<0 || indice>cachees.size());
+		this.main.add(this.cachees.remove(indice));
 	}
 
 	/**
@@ -123,6 +123,14 @@ public class Joueur {
 	 */
 	List<Carte> getCachees() {
 		return cachees;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }

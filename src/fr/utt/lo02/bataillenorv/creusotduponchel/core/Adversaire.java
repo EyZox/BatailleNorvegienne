@@ -45,4 +45,13 @@ public class Adversaire {
 	Joueur getJoueur() {
 		return joueur;
 	}
+	
+	public String getNom() {
+		return joueur.getNom();
+	}
+
+	@Override
+	public String toString() {
+		return joueur.getNom()+"[nb carte en main : "+getNbMain()+", carte visible : "+getVisible()+", nb carte cachees : "+getNbCachees();
+	}
 }

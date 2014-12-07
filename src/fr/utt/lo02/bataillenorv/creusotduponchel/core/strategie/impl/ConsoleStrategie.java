@@ -37,32 +37,63 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	public Collection<Carte> choisirCarteAPoser(Carte derniereCarte) {
-		// TODO Auto-generated method stub
-		return null;
+	public Carte choisirCarteAPoser(Carte derniereCarte) {
+		afficherJeuJoueur();
+		int main;
+		System.out.println("Selectionner une carte de votre main a placer");
+		do {
+			main = sc.nextInt();
+		}while(main <0 || main >= joueur.getMain().size());
+		return joueur.getMain().get(main);
 	}
 
 	@Override
-	public Carte choisirCachee() {
-		// TODO Auto-generated method stub
-		return null;
+	public int choisirCachee() {
+		afficherCachees();
+		System.out.println("Choississez une carte cachée :");
+		return sc.nextInt();
 	}
 
 	@Override
 	protected Adversaire choisirAdversaire() {
-		// TODO Auto-generated method stub
-		return null;
+		afficherAdversaire();
+		System.out.println("Selectionner le nom d'un adversaire : ");
+		int adv;
+		do {
+			adv = sc.nextInt();
+		}while(adv<0 || adv>=adversaires.size());
+		return adversaires.get(adv);
 	}
 	
 	private void afficherJeuJoueur() {
+		afficherAdversaire();
+		afficherMain();
+		afficherVisibles();
+		afficherCachees();
+	}
+	
+	private void afficherMain() {
 		System.out.println("Cartes en main :"+joueur.getMain());
+	}
+	
+	private void afficherVisibles() {
 		System.out.println("Cartes visibles :"+joueur.getVisibles());
+	}
+	
+	private void afficherCachees() {
 		System.out.print("Cartes cachées : [");
 		for(int i=0; i<joueur.getNbCachees(); i++) {
 			System.out.print("X");
 			if(i<joueur.getNbCachees()-1)System.out.print(",");
 		}
 		System.out.println("]");
+	}
+	
+	private void afficherAdversaire() {
+		System.out.println("Adversaires :");
+		for(int i = 0; i<adversaires.size(); i++) {
+			System.out.println(i+" - "+adversaires.get(i));
+		}
 	}
 
 }
