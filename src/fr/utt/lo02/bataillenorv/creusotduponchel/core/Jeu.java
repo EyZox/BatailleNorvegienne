@@ -66,10 +66,11 @@ public class Jeu {
 	}
 
 	/**
-	 * Lance la partie
+	 * Lance une partie
 	 */
 	public void start() {
-
+		listeDeJoueurs.get(0).distribuer(listeDeJoueurs, pioche);
+		//TODO : suite du jeu
 	}
 
 
