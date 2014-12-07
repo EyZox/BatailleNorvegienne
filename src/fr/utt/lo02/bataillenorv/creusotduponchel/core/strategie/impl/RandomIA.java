@@ -40,8 +40,7 @@ public class RandomIA extends AbstractStrategie {
 
 	@Override
 	protected Adversaire choisirAdversaire() {
-		// TODO Auto-generated method stub
-		return null;
+		return adversaires.get((int)(Math.random()*adversaires.size()));
 	}
 
 }
