@@ -15,4 +15,11 @@ public class Carte {
 	public int getValeur(){
 		return this.valeur;
 	}
+
+	@Override
+	public String toString() {
+		return valeur+"";
+	}
+	
+	
 }
