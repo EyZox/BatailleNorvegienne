@@ -42,8 +42,7 @@ public class Joueur {
 	}
 	
 	public void piocherVisibles(){
-		for(int i=0;i<3;i++)
-			this.main.add(this.visibles.get(i));
+		this.main.addAll(visibles);
 		this.visibles.clear();
 	}
 	
