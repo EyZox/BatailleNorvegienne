@@ -28,7 +28,7 @@ public class RandomIA extends AbstractStrategie {
 	public Carte choisirCarteAPoser(Carte derniereCarte) {
 		List<Carte> possibilites = new ArrayList<>();
 		for(Carte c : joueur.getMain()) {
-			if(c.peutEtreJoueeSur(derniereCarte)) possibilites.add(c);
+			if(derniereCarte.accept(c)) possibilites.add(c);
 		}
 		return joueur.getMain().get((int)(Math.random()*joueur.getMain().size()));
 	}

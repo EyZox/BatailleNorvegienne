@@ -21,7 +21,7 @@ public class CarteDeux extends CarteSpeciale {
 
 
 	@Override
-	public boolean peutEtreJoueeSur(Carte carte) {
+	public boolean accept(Carte carte) {
 		return true;
 	}
 
