@@ -72,6 +72,12 @@ public class Jeu {
 		listeDeJoueurs.get(0).distribuer(listeDeJoueurs, pioche);
 		//TODO : suite du jeu
 	}
+	
+	Iterator<Joueur>getTourJeu() {
+		return tourJeu;
+	}
+	
+	
 
 
 }
