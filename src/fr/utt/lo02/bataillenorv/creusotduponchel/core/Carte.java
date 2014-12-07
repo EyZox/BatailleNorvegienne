@@ -5,14 +5,19 @@ public class Carte {
 	public Carte(int valeur) {
 		this.valeur = valeur;
 	}
-	
-	public boolean peutEtreJoueeSur(Carte carte){
-		if(carte.valeur == 7) {
-			return this.valeur<=carte.getValeur();
-		}
+	/**
+	 * Retourne true si la carte passé en parametre peut être posé par dessus la carte
+	 * @param carte la carte a placer au dessus
+	 * @return true si possible, false si impossible
+	 */
+	public boolean accept(Carte carte) {
 		return this.valeur>=carte.getValeur();
 	}
 	
+	/**
+	 * Retourne la valeur de la carte
+	 * @return valeur de la carte
+	 */
 	public int getValeur(){
 		return this.valeur;
 	}
