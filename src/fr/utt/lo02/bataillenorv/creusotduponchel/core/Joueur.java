@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
+
 public class Joueur {
 	private static int nombredejoueurs;
 	private int identifiant;
@@ -35,11 +37,18 @@ public class Joueur {
 		this.main.add(carte);
 	}
 
-	public void echanger(Carte carteMain, Carte carteVisible){
-		if(this.main.contains(carteMain)&&this.visibles.contains(carteVisible)){
-			this.main.add(this.visibles.remove(this.visibles.indexOf(carteVisible)));
-			this.visibles.add(this.main.remove(this.main.indexOf(carteMain)));
-		}
+	public void echanger(){
+		CoupleEchangeCarte cartes;
+		do {
+			cartes = strategie.choisirCarteEchanger();
+			if(this.main.contains(cartes.getMain()) && this.visibles.contains(cartes.getVisible())) {
+				this.main.remove(cartes.getMain());
+				this.visibles.add(cartes.getMain());
+				
+				this.visibles.remove(cartes.getVisible());
+				this.main.add(cartes.getVisible());
+			}
+		}while(cartes !=null);
 	}
 
 	public void piocherVisibles(){
