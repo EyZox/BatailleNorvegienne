@@ -35,8 +35,7 @@ public class RandomIA extends AbstractStrategie {
 
 	@Override
 	public int choisirCachee() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int)(Math.random()*joueur.getNbCachees());
 	}
 
 	@Override
