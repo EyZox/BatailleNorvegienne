@@ -1,5 +1,7 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Joueur {
 	private static int nombredejoueurs;
@@ -9,7 +11,7 @@ public class Joueur {
 	private ArrayList<Carte> cachees;
 	private ArrayList<Carte> visibles;
 	private Strategie strategie;
-	
+
 	public Joueur(Strategie strategie){
 		this.strategie=strategie;
 		this.main=new ArrayList<Carte>();
@@ -18,18 +20,17 @@ public class Joueur {
 		this.identifiant=Joueur.nombredejoueurs;
 		Joueur.nombredejoueurs++;
 	}
-	
-	public void distribuer(ArrayList<Joueur> listeDesJoueurs, LinkedList<Carte> tas){
-		int taille = listeDesJoueurs.size();
-		for(int i=0;i<taille;i++){
-			for(int j=0;j<3;j++){
-				listeDesJoueurs.get(i).main.add(tas.remove(0));
-				listeDesJoueurs.get(i).cachees.add(tas.remove(0));
-				listeDesJoueurs.get(i).visibles.add(tas.remove(0));
+
+	public void distribuer(ArrayList<Joueur> listeDesJoueurs, Queue<Carte> pioche){
+		for(int i = 0; i<3; i++) {
+			for(Joueur joueur : listeDesJoueurs) {
+				joueur.main.add(pioche.poll());
+				joueur.cachees.add(pioche.poll());
+				joueur.visibles.add(pioche.poll());
 			}
 		}
 	}
-	
+
 	public void piocher(Carte carte){
 		this.main.add(carte);
 	}
@@ -40,12 +41,12 @@ public class Joueur {
 			this.visibles.add(this.main.remove(this.main.indexOf(carteMain)));
 		}
 	}
-	
+
 	public void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
 	}
-	
+
 	public void piocherCachee(){
 		Carte carte;
 		do {
@@ -53,10 +54,10 @@ public class Joueur {
 		}while(!this.cachees.remove(carte));
 		this.main.add(carte);
 	}
-	
+
 	public void ramasserTas(LinkedList<Carte> tas){
 		this.main.addAll(tas);
 		tas.clear();
 	}
-	
+
 }
