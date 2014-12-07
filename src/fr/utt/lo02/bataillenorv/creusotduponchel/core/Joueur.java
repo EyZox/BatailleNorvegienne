@@ -55,9 +55,7 @@ public class Joueur {
 	}
 	
 	public void ramasserTas(LinkedList<Carte> tas){
-		int taille = tas.size();
-		for(int i=0;i<taille;i++)
-			this.main.add(tas.get(i));
+		this.main.addAll(tas);
 		tas.clear();
 	}
 	
