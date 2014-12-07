@@ -1,6 +1,6 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 
@@ -24,6 +24,11 @@ public class Joueur {
 		Joueur.nombredejoueurs++;
 	}
 
+	/**
+	 * Distribue les cartes de la pioche
+	 * @param listeDesJoueurs la liste des joueurs incluant le joueur qui distribue
+	 * @param pioche la pioche de carte a distribuer
+	 */
 	public void distribuer(List<Joueur> listeDesJoueurs, Queue<Carte> pioche){
 		for(int i = 0; i<3; i++) {
 			for(Joueur joueur : listeDesJoueurs) {
@@ -34,10 +39,17 @@ public class Joueur {
 		}
 	}
 
+	/**
+	 * Ajoute une carte dans la main du joueur
+	 * @param carte la carte piochée
+	 */
 	public void piocher(Carte carte){
 		this.main.add(carte);
 	}
 
+	/**
+	 * Echange ses cartes de la main avec ses cartes visible
+	 */
 	public void echanger(){
 		CoupleEchangeCarte cartes;
 		do {
@@ -52,11 +64,17 @@ public class Joueur {
 		}while(cartes !=null);
 	}
 
+	/**
+	 * Recupère les cartes visibles dans sa main
+	 */
 	public void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
 	}
 
+	/**
+	 * Pioche une carte parmis ses cartes cachees et l'ajoute a sa main
+	 */
 	public void piocherCachee(){
 		Carte carte;
 		do {
@@ -65,19 +83,35 @@ public class Joueur {
 		this.main.add(carte);
 	}
 
-	public void ramasserTas(LinkedList<Carte> tas){
+	/**
+	 * Ramasse le tas de carte et l'ajoute a sa main
+	 * @param tas
+	 */
+	public void ramasserTas(Collection<Carte> tas){
 		this.main.addAll(tas);
 		tas.clear();
 	}
 
+	/**
+	 * Retourne la liste des cartes dans la main du joueur
+	 * @return liste des cartes en main
+	 */
 	public ArrayList<Carte> getMain() {
 		return main;
 	}
 
+	/**
+	 * Retourne la liste des cartes visibles du joueur
+	 * @return liste des cartes visibles
+	 */
 	public ArrayList<Carte> getVisibles() {
 		return visibles;
 	}
 	
+	/**
+	 * Retourne la liste des cartes cachees du joueur
+	 * @return liste des cartes cachees
+	 */
 	List<Carte> getCachees() {
 		return cachees;
 	}
