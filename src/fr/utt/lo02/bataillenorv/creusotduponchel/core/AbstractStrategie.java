@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public abstract class AbstractStrategie implements Strategie {
 
-	private Joueur joueur;
-	private Collection<Adversaire> adversaires;
+	protected Collection<Adversaire> adversaires;
+	protected Joueur joueur;
 	
 	public AbstractStrategie(Joueur joueur, Collection<Joueur> listeJoueur) {
 		this.joueur = joueur;
