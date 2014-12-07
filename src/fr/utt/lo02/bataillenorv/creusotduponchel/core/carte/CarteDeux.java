@@ -14,7 +14,7 @@ public class CarteDeux extends CarteSpeciale {
 
 	@Override
 	public void effet(Jeu jeu) {
-		// TODO Auto-generated method stub
+		//pas d'effet
 
 	}
 
