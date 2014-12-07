@@ -1,6 +1,8 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.AbstractStrategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Adversaire;
@@ -24,8 +26,11 @@ public class RandomIA extends AbstractStrategie {
 
 	@Override
 	public Carte choisirCarteAPoser(Carte derniereCarte) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Carte> possibilites = new ArrayList<>();
+		for(Carte c : joueur.getMain()) {
+			if(c.peutEtreJoueeSur(derniereCarte)) possibilites.add(c);
+		}
+		return joueur.getMain().get((int)(Math.random()*joueur.getMain().size()));
 	}
 
 	@Override
