@@ -1,5 +1,10 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
-public interface Strategie {
+import java.util.Collection;
 
+public interface Strategie {
+	Carte[] choisirCarteEchanger();
+	Collection<Carte> choisirCarteAPoser(Carte derniereCarte);
+	Carte choisirCacher();
+	String choisirJoueur();
 }
