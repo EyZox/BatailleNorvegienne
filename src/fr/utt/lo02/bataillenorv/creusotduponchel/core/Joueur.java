@@ -13,6 +13,11 @@ public class Joueur {
 	private ArrayList<Carte> visibles;
 	private Strategie strategie;
 
+	public Joueur(Strategie strategie, String nom) {
+		this(strategie);
+		this.setNom(nom);
+	}
+	
 	public Joueur(Strategie strategie){
 		this.strategie=strategie;
 		this.main=new ArrayList<Carte>(3);
