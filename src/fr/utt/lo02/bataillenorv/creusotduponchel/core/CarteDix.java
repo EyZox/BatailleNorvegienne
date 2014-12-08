@@ -7,4 +7,12 @@ public class CarteDix extends Carte {
 		super(10);
 	}
 
+	@Override
+	public void onPlaced(Jeu jeu) {
+		super.onPlaced(jeu);
+		jeu.getTas().clear();
+	}
+	
+	
+
 }

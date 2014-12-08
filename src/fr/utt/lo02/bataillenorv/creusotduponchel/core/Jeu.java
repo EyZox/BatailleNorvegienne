@@ -71,6 +71,10 @@ public class Jeu {
 		return tourJeu;
 	}
 	
+	Collection<Carte> getTas() {
+		return tas;
+	}
+	
 	
 
 
