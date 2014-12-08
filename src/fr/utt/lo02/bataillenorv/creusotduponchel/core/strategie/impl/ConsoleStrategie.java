@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.AbstractStrategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Adversaire;
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.Carte;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
 public class ConsoleStrategie extends AbstractStrategie {

@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
 public class Joueur {

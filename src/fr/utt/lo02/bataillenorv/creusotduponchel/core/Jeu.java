@@ -6,15 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteAs;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteDeux;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteDix;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteHuit;
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteSept;
-
 public class Jeu {
-	private Iterator<Joueur> tourJeu;
+	private TourJeu tourJeu;
 	private List<Joueur> listeDeJoueurs;
 	private LinkedList<Carte> pioche;
 	private Collection<Carte> tas;
@@ -74,7 +67,7 @@ public class Jeu {
 		//TODO : suite du jeu
 	}
 	
-	Iterator<Joueur>getTourJeu() {
+	TourJeu getTourJeu() {
 		return tourJeu;
 	}
 	

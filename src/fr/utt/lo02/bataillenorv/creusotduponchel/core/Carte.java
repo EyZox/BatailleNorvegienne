@@ -1,6 +1,5 @@
-package fr.utt.lo02.bataillenorv.creusotduponchel.core.carte;
+package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.Jeu;
 
 public class Carte {
 	private int valeur;

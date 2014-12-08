@@ -1,8 +1,6 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 import java.util.List;
-
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
 /**
  * Classe permettant de restreindre la visibilité de certains élément d'un joueur
  * @author Alexandre
