@@ -132,10 +132,18 @@ public class Joueur {
 		return cachees;
 	}
 
+	/**
+	 * Retourne le nom du joueur
+	 * @return nom du joueur
+	 */
 	public String getNom() {
 		return nom;
 	}
 
+	/**
+	 * Definis le nom du joueur
+	 * @param nom nom du joueur
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
