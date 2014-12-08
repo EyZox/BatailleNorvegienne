@@ -7,8 +7,6 @@ import java.util.Queue;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
 public class Joueur {
-	private static int nombredejoueurs;
-	private int identifiant;
 	private String nom;
 	private ArrayList<Carte> main;
 	private ArrayList<Carte> cachees;
@@ -17,11 +15,9 @@ public class Joueur {
 
 	public Joueur(Strategie strategie){
 		this.strategie=strategie;
-		this.main=new ArrayList<Carte>();
+		this.main=new ArrayList<Carte>(3);
 		this.cachees=new ArrayList<Carte>(3);
 		this.visibles=new ArrayList<Carte>(3);
-		this.identifiant=Joueur.nombredejoueurs;
-		Joueur.nombredejoueurs++;
 	}
 
 	/**
