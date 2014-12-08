@@ -7,4 +7,12 @@ public class CarteAs extends Carte {
 		super(1);
 	}
 
+	@Override
+	public void onPlaced(Jeu jeu) {
+		super.onPlaced(jeu);
+		jeu.getJoueurCourant().selectionerJoueur().ramasserTas(jeu.getTas());
+	}
+	
+	
+
 }

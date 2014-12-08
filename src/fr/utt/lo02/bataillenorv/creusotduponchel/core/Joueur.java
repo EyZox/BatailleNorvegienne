@@ -91,6 +91,17 @@ public class Joueur {
 		this.main.addAll(tas);
 		tas.clear();
 	}
+	
+	/**
+	 * Retourne un joueur adverse
+	 */
+	Joueur selectionerJoueur() {
+		Joueur j;
+		do {
+			j = this.strategie.choisirJoueur();
+		}while(j==this);
+		return j;
+	}
 
 	/**
 	 * Retourne la liste des cartes dans la main du joueur

@@ -2,12 +2,12 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Jeu {
 	private TourJeu tourJeu;
+	private Joueur joueurCourant;
 	private List<Joueur> listeDeJoueurs;
 	private LinkedList<Carte> pioche;
 	private Collection<Carte> tas;
@@ -73,6 +73,10 @@ public class Jeu {
 	
 	Collection<Carte> getTas() {
 		return tas;
+	}
+	
+	Joueur getJoueurCourant() {
+		return joueurCourant;
 	}
 	
 	
