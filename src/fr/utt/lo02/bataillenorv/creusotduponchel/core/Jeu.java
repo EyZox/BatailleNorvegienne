@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteAs;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteDeux;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.CarteDix;

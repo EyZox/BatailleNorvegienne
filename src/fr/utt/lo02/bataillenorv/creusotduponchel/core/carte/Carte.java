@@ -1,4 +1,7 @@
-package fr.utt.lo02.bataillenorv.creusotduponchel.core;
+package fr.utt.lo02.bataillenorv.creusotduponchel.core.carte;
+
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.Jeu;
+
 public class Carte {
 	private int valeur;
 
@@ -11,7 +14,7 @@ public class Carte {
 	 * @return true si possible, false si impossible
 	 */
 	public boolean accept(Carte carte) {
-		return this.valeur>=carte.getValeur();
+		return carte.bypass() || this.valeur>=carte.getValeur();
 	}
 	
 	/**
@@ -26,6 +29,12 @@ public class Carte {
 	public String toString() {
 		return valeur+"";
 	}
+	
+	protected boolean bypass() {
+		return false;
+	}
+	
+	public void onPlaced(Jeu jeu) {}
 	
 	
 }

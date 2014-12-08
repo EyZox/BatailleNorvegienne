@@ -1,6 +1,6 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper;
 
-import fr.utt.lo02.bataillenorv.creusotduponchel.core.Carte;
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.carte.Carte;
 /**
  * Permet de définir un couple de 2 cartes a échanger
  * @author Alexandre
