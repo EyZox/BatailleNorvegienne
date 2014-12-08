@@ -13,11 +13,20 @@ public class Joueur {
 	private ArrayList<Carte> visibles;
 	private Strategie strategie;
 
+	/**
+	 * Crée un joueur avec une strategie et un nom
+	 * @param strategie strategie du joueur
+	 * @param nom nom du joueur
+	 */
 	public Joueur(Strategie strategie, String nom) {
 		this(strategie);
 		this.setNom(nom);
 	}
 	
+	/**
+	 * Cree un joueur avec une strategie
+	 * @param strategie strategie du joueur
+	 */
 	public Joueur(Strategie strategie){
 		this.strategie=strategie;
 		this.main=new ArrayList<Carte>(3);
