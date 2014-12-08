@@ -1,6 +1,7 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 
+
 public class Carte {
 	private int valeur;
 

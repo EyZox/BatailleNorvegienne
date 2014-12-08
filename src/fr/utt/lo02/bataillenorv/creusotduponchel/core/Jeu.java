@@ -67,15 +67,15 @@ public class Jeu {
 		//TODO : suite du jeu
 	}
 	
-	TourJeu getTourJeu() {
+	public TourJeu getTourJeu() {
 		return tourJeu;
 	}
 	
-	Collection<Carte> getTas() {
+	public Collection<Carte> getTas() {
 		return tas;
 	}
 	
-	Joueur getJoueurCourant() {
+	public Joueur getJoueurCourant() {
 		return joueurCourant;
 	}
 	
