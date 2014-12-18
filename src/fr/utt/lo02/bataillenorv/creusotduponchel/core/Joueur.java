@@ -112,6 +112,10 @@ public class Joueur {
 		}while(j==this);
 		return j;
 	}
+	
+	Collection<Carte> poserCartes(Carte derniereCarte) {
+		return null;
+	}
 
 	/**
 	 * Retourne la liste des cartes dans la main du joueur
