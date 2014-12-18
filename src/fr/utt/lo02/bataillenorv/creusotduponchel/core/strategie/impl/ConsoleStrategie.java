@@ -1,6 +1,8 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.AbstractStrategie;
@@ -37,14 +39,33 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	public Carte choisirCarteAPoser(Carte derniereCarte) {
-		afficherJeuJoueur();
+	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
+		List<Integer> choix = new ArrayList<>();
 		int main;
-		System.out.println("Selectionner une carte de votre main a placer");
+		System.out.println("Selectionner une carte de votre main");
 		do {
+			afficherCarteChoisies(choix);
 			main = sc.nextInt();
-		}while(main <0 || main >= joueur.getMain().size());
-		return joueur.getMain().get(main);
+			if(main >= 0 && main < joueur.getMain().size()) {
+				if(choix.isEmpty()) {
+					if(derniereCarte.accept(joueur.getMain().get(main))) {
+						choix.add(main);
+					}
+				}else if(choix.contains(main)) {
+					choix.remove((Integer) main);
+				}else if(choix.size() < 3 && joueur.getMain().get(choix.get(0)) == joueur.getMain().get(main)){
+					choix.add(main);
+				}
+			}
+			
+		}while(main >= 0);
+		//Construit la liste des cartes
+		if(choix.isEmpty()) return null;
+		List<Carte> l = new ArrayList<>(choix.size());
+		for(int i : choix) {
+			l.add(joueur.getMain().get(i));
+		}
+		return l;
 	}
 
 	@Override
@@ -94,6 +115,15 @@ public class ConsoleStrategie extends AbstractStrategie {
 		for(int i = 0; i<adversaires.size(); i++) {
 			System.out.println(i+" - "+adversaires.get(i));
 		}
+	}
+	
+	private void afficherCarteChoisies(Collection<Integer> indiceCarteChoisies) {
+		System.out.print("Carte choisies : ");
+		for(int i = 0; i<joueur.getMain().size(); i++) {
+			if(indiceCarteChoisies.contains(i)) System.out.print("["+joueur.getMain().get(i)+"] ");
+			else System.out.print(joueur.getMain().get(i)+" ");
+		}
+		System.out.println();
 	}
 
 }
