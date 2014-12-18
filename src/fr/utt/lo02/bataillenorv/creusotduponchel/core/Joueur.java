@@ -22,7 +22,7 @@ public class Joueur {
 		this(strategie);
 		this.setNom(nom);
 	}
-	
+
 	/**
 	 * Cree un joueur avec une strategie
 	 * @param strategie strategie du joueur
@@ -67,7 +67,7 @@ public class Joueur {
 			if(this.main.contains(cartes.getMain()) && this.visibles.contains(cartes.getVisible())) {
 				this.main.remove(cartes.getMain());
 				this.visibles.add(cartes.getMain());
-				
+
 				this.visibles.remove(cartes.getVisible());
 				this.main.add(cartes.getVisible());
 			}
@@ -101,7 +101,7 @@ public class Joueur {
 		this.main.addAll(tas);
 		tas.clear();
 	}
-	
+
 	/**
 	 * Retourne un joueur adverse
 	 */
@@ -112,9 +112,38 @@ public class Joueur {
 		}while(j==this);
 		return j;
 	}
-	
+
+	/**
+	 * Retourne l'ensemble des cartes placées par le joueur
+	 * @param derniereCarte la dernière carte sur le tas
+	 * @return les cartes placées par le joueur ou null s'il ne place aucune carte
+	 */
 	Collection<Carte> poserCartes(Carte derniereCarte) {
-		return null;
+		List<Carte> choix = null;
+		boolean choixValide = false;
+		do {
+			choix = strategie.choisirCartesAPoser(derniereCarte);
+
+			if(choix == null || choix.isEmpty()) {
+				return null;
+			}
+
+			if(choix.size() <= 3 && main.contains(choix.get(0)) && derniereCarte.accept(choix.get(0))) {
+				choixValide = true;
+				if(choix.size() > 1) {
+					for(int i = 1; i<choix.size(); i++) {
+						if(choix.get(0) != choix.get(i)) {
+							choixValide = false;
+							break;
+						}
+					}
+				}
+			}
+
+		}while(!choixValide);
+		
+		main.removeAll(choix);
+		return choix;
 	}
 
 	/**
@@ -132,7 +161,7 @@ public class Joueur {
 	public ArrayList<Carte> getVisibles() {
 		return visibles;
 	}
-	
+
 	/**
 	 * Retourne le nombre de carte que le joueur possède face cachée
 	 * @return le nombre de carte face cachée
@@ -140,8 +169,8 @@ public class Joueur {
 	public int getNbCachees() {
 		return cachees.size();
 	}
-	
-	
+
+
 	/**
 	 * Retourne la liste des cartes cachees du joueur
 	 * @return liste des cartes cachees
