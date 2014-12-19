@@ -19,6 +19,7 @@ public class Jeu {
 		tas = new LinkedList<>();
 		pioche = new LinkedList<>();
 		initCartes();
+		tourJeu = new TourJeu(listeDeJoueurs, (int)(Math.random()*listeDeJoueurs.size()));
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class Jeu {
 	 * Lance une partie
 	 */
 	public void start() {
-		listeDeJoueurs.get(0).distribuer(listeDeJoueurs, pioche);
+		tourJeu.next().distribuer(listeDeJoueurs, pioche);
 		//TODO : suite du jeu
 	}
 	
