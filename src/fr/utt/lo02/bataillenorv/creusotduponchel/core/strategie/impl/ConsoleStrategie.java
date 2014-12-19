@@ -48,13 +48,21 @@ public class ConsoleStrategie extends AbstractStrategie {
 			main = sc.nextInt();
 			if(main >= 0 && main < joueur.getMain().size()) {
 				if(choix.isEmpty()) {
-					if(derniereCarte.accept(joueur.getMain().get(main))) {
+					if(derniereCarte == null || derniereCarte.accept(joueur.getMain().get(main))) {
 						choix.add(main);
+					}else {
+						System.out.println("Impossible de placer cette carte");
 					}
 				}else if(choix.contains(main)) {
 					choix.remove((Integer) main);
-				}else if(choix.size() < 3 && joueur.getMain().get(choix.get(0)) == joueur.getMain().get(main)){
-					choix.add(main);
+				}else if(choix.size() < 3) {
+					if(joueur.getMain().get(choix.get(0)) == joueur.getMain().get(main)){
+						choix.add(main);
+					}else {
+						System.out.println("Vous devez choisir des cartes de valeurs identiques");
+					}
+				}else {
+					System.out.println("Vous ne pouvez pas choisir plus que 3 cartes");
 				}
 			}
 			
