@@ -18,43 +18,64 @@ public class AggressiveIA extends AbstractStrategie {
 
 	@Override
 	public CoupleEchangeCarte choisirCarteEchanger() {
-		int plusPetiteCarteVisible=Integer.MAX_VALUE;
-		int plusGrandeCarteMain=0;
-		int indexVisibles=0;
-		int indexMain=0;
-		for(int i=0;i<3;i++){
-			if(joueur.getMain().get(i).getValeur()<plusPetiteCarteVisible){
+		int plusPetiteCarteVisible = Integer.MAX_VALUE;
+		int plusGrandeCarteMain = 0;
+		int indexVisibles = 0;
+		int indexMain = 0;
+		for (int i = 0; i < 3; i++) {
+			if (joueur.getMain().get(i).getValeur() < plusPetiteCarteVisible) {
 				indexVisibles = i;
-				plusPetiteCarteVisible=joueur.getMain().get(i).getValeur();
-				}
-			if(joueur.getVisibles().get(i).getValeur()>plusGrandeCarteMain){
+				plusPetiteCarteVisible = joueur.getMain().get(i).getValeur();
+			}
+			if (joueur.getVisibles().get(i).getValeur() > plusGrandeCarteMain) {
 				indexMain = i;
-				plusGrandeCarteMain=joueur.getVisibles().get(i).getValeur();
+				plusGrandeCarteMain = joueur.getVisibles().get(i).getValeur();
 			}
 		}
-		if(plusPetiteCarteVisible>plusGrandeCarteMain) return null;
-		return new CoupleEchangeCarte(
-				joueur.getMain().get(indexMain),
-				joueur.getVisibles().get(indexVisibles));
+		if (plusPetiteCarteVisible > plusGrandeCarteMain)
+			return null;
+		return new CoupleEchangeCarte(joueur.getMain().get(indexMain), joueur
+				.getVisibles().get(indexVisibles));
 	}
 
 	@Override
-	public Carte choisirCarteAPoser(Carte derniereCarte) {
+	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Carte> possibilites = new ArrayList<>();
-		for(Carte c : joueur.getMain()) {
-			if(derniereCarte.accept(c)) possibilites.add(c);
+		List<Carte> choix = new ArrayList<>();
+		Carte plusPetite = new Carte(13);
+		//cas ou il n'y a pas de carte sur le tas
+		if (derniereCarte == null)
+			possibilites = joueur.getMain();
+		// sinon on cherche les cartes possibles
+		else {
+			for (Carte c : joueur.getMain()) {
+				if (derniereCarte.accept(c)) {
+					possibilites.add(c);
+				}
+			}
 		}
-		return joueur.getMain().get((int)(Math.random()*joueur.getMain().size()));
+		// on parcourt les cartes possibles pour chercher la plus petite valeur
+		for (Carte carte : possibilites)
+			if (carte.getValeur() < plusPetite.getValeur())
+				plusPetite = carte;
+		// plusPetite est la plus petite carte posable, il faut ensuite verifier
+		// si il y en a plusieurs
+		for (int i = 0; i < 3; i++) {
+			if(possibilites.remove(plusPetite))
+			choix.add(plusPetite);
+		}
+
+		return choix;
 	}
 
 	@Override
 	public int choisirCachee() {
-		return (int)(Math.random()*joueur.getNbCachees());
+		return (int) (Math.random() * joueur.getNbCachees());
 	}
 
 	@Override
 	protected Adversaire choisirAdversaire() {
-		return adversaires.get((int)(Math.random()*adversaires.size()));
+		return adversaires.get((int) (Math.random() * adversaires.size()));
 	}
 
 }

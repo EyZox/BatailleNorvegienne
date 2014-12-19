@@ -30,7 +30,7 @@ public class RandomIA extends AbstractStrategie {
 		for(Carte c : joueur.getMain()) {
 			if(derniereCarte.accept(c)) possibilites.add(c);
 		}
-		return possibilites.get((int)(Math.random()*possibilites.size()));
+		return joueur.getMain().get((int)(Math.random()*joueur.getMain().size()));
 	}
 
 	@Override
