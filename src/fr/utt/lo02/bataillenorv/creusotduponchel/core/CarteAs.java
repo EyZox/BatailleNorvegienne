@@ -27,6 +27,11 @@ public class CarteAs extends Carte {
 	public boolean accept(Carte carte) {
 		return carte instanceof CarteAs || carte instanceof CarteDeux;
 	}
+
+	@Override
+	protected boolean bypass() {
+		return true;
+	}
 	
 	
 	

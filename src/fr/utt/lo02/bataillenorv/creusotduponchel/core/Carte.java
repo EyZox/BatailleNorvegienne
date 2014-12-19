@@ -38,7 +38,14 @@ public class Carte implements Comparable<Carte>{
 	
 	@Override
 	public int compareTo(Carte o) {
-		return valeur-o.valeur;
+		if(this instanceof CarteAs) {
+			if(o instanceof CarteAs) return 0;
+			else return 1;
+		}else if(this instanceof CarteDeux) {
+			if(o instanceof CarteDeux) return 0;
+			else if(o instanceof CarteAs) return -1;
+			else return 1;
+		}else return valeur-o.valeur;
 	}
 	
 	
