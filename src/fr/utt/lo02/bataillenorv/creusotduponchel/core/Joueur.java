@@ -85,12 +85,12 @@ public class Joueur {
 	/**
 	 * Pioche une carte parmis ses cartes cachees et l'ajoute a sa main
 	 */
-	void piocherCachee(){
+	Carte piocherCachee(){
 		int indice;
 		do {
 			indice = strategie.choisirCachee();
 		}while(indice<0 || indice>cachees.size());
-		this.main.add(this.cachees.remove(indice));
+		return this.cachees.remove(indice);
 	}
 
 	/**

@@ -11,7 +11,7 @@ public class Jeu {
 	private Joueur joueurCourant;
 	private List<Joueur> listeDeJoueurs;
 	private LinkedList<Carte> pioche;
-	private Collection<Carte> tas;
+	private LinkedList<Carte> tas;
 
 
 
@@ -64,13 +64,47 @@ public class Jeu {
 	/**
 	 * Lance une partie
 	 */
-	public void start() {
+	public Joueur start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
 		for(Joueur j : listeDeJoueurs) {
 			j.echanger();
 		}
 		do {
 			joueurCourant = tourJeu.next();
+			Collection<Carte> cartesPosees = joueurCourant.poserCartes(tas.getLast());
+			if(cartesPosees == null) {
+				joueurCourant.ramasserTas(tas);
+			}else {
+				tas.addAll(cartesPosees);
+				cartesPosees.iterator().next().onPlaced(this, cartesPosees.size());
+				for(int i=0; i<cartesPosees.size();i++) {
+					if(pioche.isEmpty()) break;
+					joueurCourant.piocher(pioche.poll());
+				}
+				
+				if(pioche.isEmpty() && joueurCourant.getMain().isEmpty()) {
+					if(!joueurCourant.getVisibles().isEmpty()) {
+						joueurCourant.piocherVisibles();
+					}else {
+						Carte carteCachee = null;
+						while(!joueurCourant.getCachees().isEmpty() || joueurCourant.getMain().isEmpty()) {
+							carteCachee = joueurCourant.piocherCachee();
+							if(tas.getLast().accept(carteCachee)) {
+								tas.add(carteCachee);
+							}else {
+								joueurCourant.piocher(carteCachee);
+								joueurCourant.ramasserTas(tas);
+							}
+						}
+						
+						if(joueurCourant.getMain().isEmpty() && joueurCourant.getCachees().isEmpty()) {
+							System.out.println("Gagnant : "+joueurCourant);
+							return joueurCourant;
+						}
+					}
+				}
+			}
+			
 		}while(true);
 	}
 	
