@@ -29,13 +29,19 @@ public class RandomIA extends AbstractStrategie {
 
 	@Override
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
-		//Construction du set de cartes possible a jouer
 		Set<Carte> possibilites = new HashSet<>();
-		for(Carte c : joueur.getMain()) {
-			if(derniereCarte.accept(c)) possibilites.add(c);
+		//S'il n'y a pas de carte sur le tas
+		if(derniereCarte == null) {
+			possibilites.addAll(joueur.getMain());
+		}else {
+			//Construction du set de cartes possible a jouer
+			for(Carte c : joueur.getMain()) {
+				if(derniereCarte.accept(c)) possibilites.add(c);
+			}
 		}
-		if(possibilites.isEmpty()) return null;
 		
+		if(possibilites.isEmpty()) return null;
+
 		//Determine quel carte jouer
 		int rdn = (int) (Math.random()*possibilites.size());
 		Iterator<Carte> it = possibilites.iterator();
@@ -43,14 +49,14 @@ public class RandomIA extends AbstractStrategie {
 		for(int i = 0; i<= rdn; i++) {
 			choix = it.next();
 		}
-		
+
 		//Compte le nombre de fois que la carte apparait dans la main
 		int nbAppar = 0;
 		for(Carte c : joueur.getMain()) {
 			if(c == choix) nbAppar++;
 			if(nbAppar >= 3) break;
 		}
-		
+
 		//Ajoute un nombre aléatoire de carte choisie
 		rdn = (int) (Math.random()*nbAppar) +1;
 		List<Carte> l = new ArrayList<>(rdn);
