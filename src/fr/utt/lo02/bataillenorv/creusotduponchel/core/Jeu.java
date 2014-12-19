@@ -66,6 +66,9 @@ public class Jeu {
 	 */
 	public void start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
+		for(Joueur j : listeDeJoueurs) {
+			j.echanger();
+		}
 		do {
 			joueurCourant = tourJeu.next();
 		}while(true);
