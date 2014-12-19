@@ -2,6 +2,7 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Jeu {
 	private Joueur joueurCourant;
 	private List<Joueur> listeDeJoueurs;
 	private LinkedList<Carte> pioche;
-	private Collection<Carte> tas;
+	private LinkedList<Carte> tas;
 
 
 
@@ -19,6 +20,7 @@ public class Jeu {
 		tas = new LinkedList<>();
 		pioche = new LinkedList<>();
 		initCartes();
+		tourJeu = new TourJeu(listeDeJoueurs, (int)(Math.random()*listeDeJoueurs.size()));
 	}
 
 	/**
@@ -62,12 +64,51 @@ public class Jeu {
 	/**
 	 * Lance une partie
 	 */
-	public void start() {
-		listeDeJoueurs.get(0).distribuer(listeDeJoueurs, pioche);
-		//TODO : suite du jeu
+	public Joueur start() {
+		tourJeu.next().distribuer(listeDeJoueurs, pioche);
+		for(Joueur j : listeDeJoueurs) {
+			j.echanger();
+		}
+		do {
+			joueurCourant = tourJeu.next();
+			Collection<Carte> cartesPosees = joueurCourant.poserCartes(tas.getLast());
+			if(cartesPosees == null) {
+				joueurCourant.ramasserTas(tas);
+			}else {
+				tas.addAll(cartesPosees);
+				cartesPosees.iterator().next().onPlaced(this, cartesPosees.size());
+				for(int i=0; i<cartesPosees.size();i++) {
+					if(pioche.isEmpty()) break;
+					joueurCourant.piocher(pioche.poll());
+				}
+				
+				if(pioche.isEmpty() && joueurCourant.getMain().isEmpty()) {
+					if(!joueurCourant.getVisibles().isEmpty()) {
+						joueurCourant.piocherVisibles();
+					}else {
+						Carte carteCachee = null;
+						while(!joueurCourant.getCachees().isEmpty() || joueurCourant.getMain().isEmpty()) {
+							carteCachee = joueurCourant.piocherCachee();
+							if(tas.getLast().accept(carteCachee)) {
+								tas.add(carteCachee);
+							}else {
+								joueurCourant.piocher(carteCachee);
+								joueurCourant.ramasserTas(tas);
+							}
+						}
+						
+						if(joueurCourant.getMain().isEmpty() && joueurCourant.getCachees().isEmpty()) {
+							System.out.println("Gagnant : "+joueurCourant);
+							return joueurCourant;
+						}
+					}
+				}
+			}
+			
+		}while(true);
 	}
 	
-	public TourJeu getTourJeu() {
+	public Iterator<Joueur> getTourJeu() {
 		return tourJeu;
 	}
 	

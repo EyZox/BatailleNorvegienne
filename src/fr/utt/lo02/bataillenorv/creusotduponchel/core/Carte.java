@@ -34,7 +34,7 @@ public class Carte {
 		return false;
 	}
 	
-	public void onPlaced(Jeu jeu) {}
+	public void onPlaced(Jeu jeu, int nb) {}
 	
 	
 }

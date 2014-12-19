@@ -12,6 +12,11 @@ public class TourJeu implements Iterator<Joueur>, Cloneable{
 		this.joueurs = joueurs;
 	}
 	
+	public TourJeu(List<Joueur> joueurs, int depart) {
+		this(joueurs);
+		this.index = depart;
+	}
+	
 	@Override
 	public boolean hasNext() {
 		return true;
