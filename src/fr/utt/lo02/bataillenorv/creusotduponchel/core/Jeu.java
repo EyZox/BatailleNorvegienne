@@ -15,12 +15,15 @@ public class Jeu {
 
 
 
-	public Jeu(LinkedList<Joueur> listeDeJoueurs){
+	public Jeu(List<Joueur> listeDeJoueurs){
 		this.listeDeJoueurs=listeDeJoueurs;
 		tas = new LinkedList<>();
 		pioche = new LinkedList<>();
 		initCartes();
 		tourJeu = new TourJeu(listeDeJoueurs, (int)(Math.random()*listeDeJoueurs.size()));
+		for(Joueur j : listeDeJoueurs) {
+			j.init(listeDeJoueurs);
+		}
 	}
 
 	/**
@@ -71,7 +74,7 @@ public class Jeu {
 		}
 		do {
 			joueurCourant = tourJeu.next();
-			Collection<Carte> cartesPosees = joueurCourant.poserCartes(tas.getLast());
+			Collection<Carte> cartesPosees = joueurCourant.poserCartes(tas.isEmpty()?null:tas.getLast());
 			if(cartesPosees == null) {
 				joueurCourant.ramasserTas(tas);
 			}else {
@@ -118,6 +121,10 @@ public class Jeu {
 	
 	public Joueur getJoueurCourant() {
 		return joueurCourant;
+	}
+	
+	public void setJoueurCourant(Joueur j) {
+		joueurCourant = j;
 	}
 	
 	

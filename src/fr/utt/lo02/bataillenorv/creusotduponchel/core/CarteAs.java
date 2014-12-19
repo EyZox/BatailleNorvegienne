@@ -13,7 +13,8 @@ public class CarteAs extends Carte {
 	@Override
 	public void onPlaced(Jeu jeu, int nb) {
 		super.onPlaced(jeu, nb);
-		Collection<Carte> cartes = jeu.getJoueurCourant().selectionerJoueur().poserCartes(this);
+		jeu.setJoueurCourant(jeu.getJoueurCourant().selectionerJoueur());
+		Collection<Carte> cartes = jeu.getJoueurCourant().poserCartes(this);
 		if(cartes == null) jeu.getJoueurCourant().ramasserTas(jeu.getTas());
 		else {
 			jeu.getTas().addAll(cartes);

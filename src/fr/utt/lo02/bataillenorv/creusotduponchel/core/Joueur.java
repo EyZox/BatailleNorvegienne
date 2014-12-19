@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.IA;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.Strategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
@@ -23,16 +24,26 @@ public class Joueur {
 		this(strategie);
 		this.setNom(nom);
 	}
-
+	
 	/**
 	 * Cree un joueur avec une strategie
 	 * @param strategie strategie du joueur
 	 */
-	public Joueur(Strategie strategie){
-		this.strategie=strategie;
+	private Joueur(Strategie str) {
+		str.setJoueur(this);
+		this.strategie=str;
 		this.main=new ArrayList<Carte>(3);
 		this.cachees=new ArrayList<Carte>(3);
 		this.visibles=new ArrayList<Carte>(3);
+	}
+	
+	/**
+	 * Cree un joueur avec une strategie IA
+	 * @param strategie strategie du joueur
+	 */
+	public Joueur(IA ia) {
+		this((Strategie) ia);
+		this.setNom(ia.getNom());
 	}
 
 	/**
@@ -41,6 +52,7 @@ public class Joueur {
 	 * @param pioche la pioche de carte a distribuer
 	 */
 	void distribuer(List<Joueur> listeDesJoueurs, Queue<Carte> pioche){
+		System.out.println(getNom() + " distribue les cartes ...");
 		for(int i = 0; i<3; i++) {
 			for(Joueur joueur : listeDesJoueurs) {
 				joueur.main.add(pioche.poll());
@@ -55,6 +67,7 @@ public class Joueur {
 	 * @param carte la carte piochée
 	 */
 	void piocher(Carte carte){
+		System.out.println(getNom() + " a pioché la carte "+carte);
 		this.main.add(carte);
 	}
 
@@ -65,12 +78,14 @@ public class Joueur {
 		CoupleEchangeCarte cartes;
 		do {
 			cartes = strategie.choisirCarteEchanger();
-			if(this.main.contains(cartes.getMain()) && this.visibles.contains(cartes.getVisible())) {
+			if(cartes != null && this.main.contains(cartes.getMain()) && this.visibles.contains(cartes.getVisible())) {
 				this.main.remove(cartes.getMain());
 				this.visibles.add(cartes.getMain());
 
 				this.visibles.remove(cartes.getVisible());
 				this.main.add(cartes.getVisible());
+				
+				System.out.println(getNom() + " a echangé la carte "+cartes.getMain()+" de sa main avec la carte "+cartes.getVisible()+" de ses cartes visibles");
 			}
 		}while(cartes !=null);
 	}
@@ -81,6 +96,7 @@ public class Joueur {
 	void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
+		System.out.println(getNom()+" a pioché ses cartes visibles");
 	}
 
 	/**
@@ -91,7 +107,9 @@ public class Joueur {
 		do {
 			indice = strategie.choisirCachee();
 		}while(indice<0 || indice>cachees.size());
-		return this.cachees.remove(indice);
+		Carte c = this.cachees.remove(indice);
+		System.out.println(getNom()+ " a pris la carte cachee "+c);
+		return c;
 	}
 
 	/**
@@ -101,6 +119,7 @@ public class Joueur {
 	void ramasserTas(Collection<Carte> tas){
 		this.main.addAll(tas);
 		tas.clear();
+		System.out.println(getNom()+" a ramassé le tas");
 	}
 
 	/**
@@ -111,6 +130,7 @@ public class Joueur {
 		do {
 			j = this.strategie.choisirJoueur();
 		}while(j==this);
+		System.out.println(getNom() + " a choisis le joueur "+j.getNom());
 		return j;
 	}
 
@@ -144,7 +164,22 @@ public class Joueur {
 		}while(!choixValide);
 		
 		main.removeAll(choix);
+		System.out.println(getNom()+" joue les cartes "+choix);
 		return choix;
+	}
+	
+	/**
+	 * Initialise le joueurs pour une partie avec une liste de joueurs
+	 * @param joueurs
+	 */
+	void init(Collection<Joueur> joueurs) {
+		List<Adversaire> adversaires = new ArrayList<>(joueurs.size()-1);
+		for(Joueur j : joueurs) {
+			if(j != this) {
+				adversaires.add(new Adversaire(j));
+			}
+		}
+		strategie.setAdversaires(adversaires);
 	}
 
 	/**
