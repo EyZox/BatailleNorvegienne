@@ -44,4 +44,14 @@ public class TourJeu implements Iterator<Joueur>, Cloneable{
 		t.joueurs = joueurs;
 		return t;
 	}
+	
+	public Joueur getJoueurCourant() {
+		return index<0?null:joueurs.get(index);
+	}
+	
+	public void setJoueurCourant(Joueur j) {
+		if(joueurs.contains(j)) {
+			index = joueurs.indexOf(j);
+		}
+	}
 }

@@ -13,7 +13,8 @@ public class CarteHuit extends Carte {
 	public void onPlaced(Jeu jeu, int nb) {
 		super.onPlaced(jeu, nb);
 		for(int i = 0; i <nb; i++) {
-			jeu.getTourJeu().next();
+			
+			System.out.println(jeu.getTourJeu().next().getNom()+" passe son tour");
 		}
 	}
 	

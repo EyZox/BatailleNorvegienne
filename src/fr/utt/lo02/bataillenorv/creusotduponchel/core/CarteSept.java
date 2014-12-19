@@ -9,7 +9,7 @@ public class CarteSept extends Carte {
 
 	@Override
 	public boolean accept(Carte carte) {
-		return carte.bypass() || this.getValeur()<=carte.getValeur();
+		return carte.bypass() || this.getValeur()>=carte.getValeur();
 	}
 
 }

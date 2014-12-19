@@ -14,7 +14,7 @@ public class Carte implements Comparable<Carte>{
 	 * @return true si possible, false si impossible
 	 */
 	public boolean accept(Carte carte) {
-		return carte.bypass() || this.valeur>=carte.getValeur();
+		return carte.bypass() || this.valeur<=carte.getValeur();
 	}
 	
 	/**
@@ -38,15 +38,26 @@ public class Carte implements Comparable<Carte>{
 	
 	@Override
 	public int compareTo(Carte o) {
-		if(this instanceof CarteAs) {
-			if(o instanceof CarteAs) return 0;
+		if(this.equals(o)) return 0;
+		if(this instanceof CarteAs) return 1;
+		
+		if(this instanceof CarteDeux) {
+			if(o instanceof CarteAs) return -1;
 			else return 1;
-		}else if(this instanceof CarteDeux) {
-			if(o instanceof CarteDeux) return 0;
-			else if(o instanceof CarteAs) return -1;
-			else return 1;
-		}else return valeur-o.valeur;
+		}
+		
+		if(o instanceof CarteAs || o instanceof CarteDeux) return -1; 
+		return valeur-o.valeur;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Carte) {
+			return this.valeur == ((Carte)obj).valeur;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	
 }

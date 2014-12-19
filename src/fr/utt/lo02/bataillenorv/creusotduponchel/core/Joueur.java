@@ -149,7 +149,7 @@ public class Joueur {
 				return null;
 			}
 
-			if(choix.size() <= 3 && main.contains(choix.get(0)) && derniereCarte.accept(choix.get(0))) {
+			if(choix.size() <= 3 && main.contains(choix.get(0)) && (derniereCarte==null || derniereCarte.accept(choix.get(0)))) {
 				choixValide = true;
 				if(choix.size() > 1) {
 					for(int i = 1; i<choix.size(); i++) {
@@ -230,5 +230,12 @@ public class Joueur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	@Override
+	public String toString() {
+		return getNom();
+	}
+	
+	
 
 }

@@ -1,7 +1,9 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,10 +14,25 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte
 
 public class ConsoleStrategie extends AbstractStrategie {
 
-	private Scanner sc;
-	
+	private class ProtectedIntScanner {
+		Scanner sc;
+		ProtectedIntScanner(InputStream is) {
+			sc = new Scanner(is);
+		}
+		public int nextInt() {
+			while(true)
+			try {
+				return sc.nextInt();
+			}catch(InputMismatchException e) {
+				System.err.println("Veuillez entrer un indice numérique");
+				sc.nextLine();
+			}
+		}
+	}
+	private ProtectedIntScanner sc;
+
 	public ConsoleStrategie() {
-		sc = new Scanner(System.in);
+		sc = new ProtectedIntScanner(System.in);
 	}
 
 	@Override
@@ -32,7 +49,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 			visible = sc.nextInt();
 		}while(visible >= joueur.getVisibles().size());
 		if(visible <0)return null;
-		
+
 		return new CoupleEchangeCarte(joueur.getMain().get(main), joueur.getVisibles().get(visible));
 	}
 
@@ -40,7 +57,8 @@ public class ConsoleStrategie extends AbstractStrategie {
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Integer> choix = new ArrayList<>();
 		int main;
-		System.out.println("Selectionner une carte de votre main");
+		System.out.println("Dernière carte sur le tas : "+derniereCarte);
+		System.out.println("Selectionner une carte de votre main (<0 pour ne rien poser)");
 		do {
 			afficherCarteChoisies(choix);
 			main = sc.nextInt();
@@ -63,7 +81,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 					System.out.println("Vous ne pouvez pas choisir plus que 3 cartes");
 				}
 			}
-			
+
 		}while(main >= 0);
 		//Construit la liste des cartes
 		if(choix.isEmpty()) return null;
@@ -91,22 +109,22 @@ public class ConsoleStrategie extends AbstractStrategie {
 		}while(adv<0 || adv>=adversaires.size());
 		return adversaires.get(adv);
 	}
-	
+
 	private void afficherJeuJoueur() {
 		afficherAdversaire();
 		afficherMain();
 		afficherVisibles();
 		afficherCachees();
 	}
-	
+
 	private void afficherMain() {
 		System.out.println("Cartes en main :"+joueur.getMain());
 	}
-	
+
 	private void afficherVisibles() {
 		System.out.println("Cartes visibles :"+joueur.getVisibles());
 	}
-	
+
 	private void afficherCachees() {
 		System.out.print("Cartes cachées : [");
 		for(int i=0; i<joueur.getNbCachees(); i++) {
@@ -115,16 +133,16 @@ public class ConsoleStrategie extends AbstractStrategie {
 		}
 		System.out.println("]");
 	}
-	
+
 	private void afficherAdversaire() {
 		System.out.println("Adversaires :");
 		for(int i = 0; i<adversaires.size(); i++) {
 			System.out.println(i+" - "+adversaires.get(i));
 		}
 	}
-	
+
 	private void afficherCarteChoisies(Collection<Integer> indiceCarteChoisies) {
-		System.out.print("Carte choisies : ");
+		System.out.print("Carte choisies (entre []): ");
 		for(int i = 0; i<joueur.getMain().size(); i++) {
 			if(indiceCarteChoisies.contains(i)) System.out.print("["+joueur.getMain().get(i)+"] ");
 			else System.out.print(joueur.getMain().get(i)+" ");

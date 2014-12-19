@@ -34,7 +34,7 @@ public class AggressiveIA extends IA {
 		//on trie les cartes
 		Collections.sort(joueur.getMain());
 		for(Carte c : joueur.getMain()) {
-			if((derniereCarte == null || derniereCarte.accept(c))|| (!choix.isEmpty() && choix.size() < 3 && choix.get(0) == c)) {
+			if((choix.isEmpty() && (derniereCarte == null || derniereCarte.accept(c))) || (!choix.isEmpty() && choix.size() < 3 && choix.get(0) == c)) {
 				choix.add(c);
 			}else if(!choix.isEmpty()) {
 				break;

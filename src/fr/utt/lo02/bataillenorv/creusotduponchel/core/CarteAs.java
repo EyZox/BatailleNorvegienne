@@ -1,9 +1,4 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
-
-import java.util.Collection;
-
-
-
 public class CarteAs extends Carte {
 
 	public CarteAs() {
@@ -13,14 +8,8 @@ public class CarteAs extends Carte {
 	@Override
 	public void onPlaced(Jeu jeu, int nb) {
 		super.onPlaced(jeu, nb);
-		jeu.setJoueurCourant(jeu.getJoueurCourant().selectionerJoueur());
-		Collection<Carte> cartes = jeu.getJoueurCourant().poserCartes(this);
-		if(cartes == null) jeu.getJoueurCourant().ramasserTas(jeu.getTas());
-		else {
-			jeu.getTas().addAll(cartes);
-			Carte c = cartes.iterator().next();
-			c.onPlaced(jeu, nb);
-		}
+		jeu.getTourJeu().setJoueurCourant(jeu.getTourJeu().getJoueurCourant().selectionerJoueur());
+		jeu.processCarteJouees(jeu.getTourJeu().getJoueurCourant(),jeu.getTourJeu().getJoueurCourant().poserCartes(this));
 	}
 
 	@Override

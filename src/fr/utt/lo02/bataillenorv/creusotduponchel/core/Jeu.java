@@ -2,7 +2,6 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -74,60 +73,55 @@ public class Jeu {
 		}
 		do {
 			joueurCourant = tourJeu.next();
-			Collection<Carte> cartesPosees = joueurCourant.poserCartes(tas.isEmpty()?null:tas.getLast());
-			if(cartesPosees == null) {
-				joueurCourant.ramasserTas(tas);
-			}else {
-				tas.addAll(cartesPosees);
-				cartesPosees.iterator().next().onPlaced(this, cartesPosees.size());
-				for(int i=0; i<cartesPosees.size();i++) {
-					if(pioche.isEmpty()) break;
-					joueurCourant.piocher(pioche.poll());
-				}
-				
-				if(pioche.isEmpty() && joueurCourant.getMain().isEmpty()) {
-					if(!joueurCourant.getVisibles().isEmpty()) {
-						joueurCourant.piocherVisibles();
-					}else {
-						Carte carteCachee = null;
-						while(!joueurCourant.getCachees().isEmpty() || joueurCourant.getMain().isEmpty()) {
-							carteCachee = joueurCourant.piocherCachee();
-							if(tas.getLast().accept(carteCachee)) {
-								tas.add(carteCachee);
-							}else {
-								joueurCourant.piocher(carteCachee);
-								joueurCourant.ramasserTas(tas);
-							}
-						}
-						
-						if(joueurCourant.getMain().isEmpty() && joueurCourant.getCachees().isEmpty()) {
-							System.out.println("Gagnant : "+joueurCourant);
-							return joueurCourant;
-						}
-					}
-				}
+			Joueur potentielGagnant = processCarteJouees(joueurCourant, joueurCourant.poserCartes(tas.isEmpty()?null:tas.getLast()));
+			if(potentielGagnant != null) {
+				System.out.println("Gagnant : "+potentielGagnant);
+				return potentielGagnant;
 			}
 			
 		}while(true);
 	}
 	
-	public Iterator<Joueur> getTourJeu() {
+	public Joueur processCarteJouees(Joueur joueur, Collection<Carte> cartesJouees) {
+		if(cartesJouees == null) {
+			joueur.ramasserTas(tas);
+		}else {
+			tas.addAll(cartesJouees);
+			cartesJouees.iterator().next().onPlaced(this, cartesJouees.size());
+			for(int i=0; i<cartesJouees.size();i++) {
+				if(pioche.isEmpty()) break;
+				joueur.piocher(pioche.poll());
+			}
+			
+			if(pioche.isEmpty() && joueur.getMain().isEmpty()) {
+				if(!joueur.getVisibles().isEmpty()) {
+					joueur.piocherVisibles();
+				}else {
+					Carte carteCachee = null;
+					while(!joueur.getCachees().isEmpty() && joueur.getMain().isEmpty()) {
+						carteCachee = joueur.piocherCachee();
+						if(tas.isEmpty() || tas.getLast().accept(carteCachee)) {
+							tas.add(carteCachee);
+						}else {
+							joueur.piocher(carteCachee);
+							joueur.ramasserTas(tas);
+						}
+					}
+					
+					if(joueur.getMain().isEmpty() && joueur.getCachees().isEmpty()) {
+						return joueur;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public TourJeu getTourJeu() {
 		return tourJeu;
 	}
 	
 	public Collection<Carte> getTas() {
 		return tas;
 	}
-	
-	public Joueur getJoueurCourant() {
-		return joueurCourant;
-	}
-	
-	public void setJoueurCourant(Joueur j) {
-		joueurCourant = j;
-	}
-	
-	
-
-
 }
