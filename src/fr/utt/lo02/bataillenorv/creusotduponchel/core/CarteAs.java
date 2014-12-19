@@ -9,8 +9,8 @@ public class CarteAs extends Carte {
 	}
 
 	@Override
-	public void onPlaced(Jeu jeu) {
-		super.onPlaced(jeu);
+	public void onPlaced(Jeu jeu, int nb) {
+		super.onPlaced(jeu, nb);
 		jeu.getJoueurCourant().selectionerJoueur().ramasserTas(jeu.getTas());
 	}
 	

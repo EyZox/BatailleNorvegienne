@@ -10,9 +10,11 @@ public class CarteHuit extends Carte {
 	}
 
 	@Override
-	public void onPlaced(Jeu jeu) {
-		super.onPlaced(jeu);
-		jeu.getTourJeu().next();
+	public void onPlaced(Jeu jeu, int nb) {
+		super.onPlaced(jeu, nb);
+		for(int i = 0; i <nb; i++) {
+			jeu.getTourJeu().next();
+		}
 	}
 	
 	
