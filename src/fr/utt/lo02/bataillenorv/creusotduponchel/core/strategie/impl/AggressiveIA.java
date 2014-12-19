@@ -2,6 +2,7 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Adversaire;
@@ -44,13 +45,16 @@ public class AggressiveIA extends IA {
 	}
 
 	@Override
-	public int choisirCachee() {
-		return (int) (Math.random() * joueur.getNbCachees());
-	}
-
-	@Override
 	protected Adversaire choisirAdversaire() {
-		return adversaires.get((int) (Math.random() * adversaires.size()));
+		Collections.sort(adversaires, new Comparator<Adversaire>() {
+
+			@Override
+			public int compare(Adversaire o1, Adversaire o2) {
+				// *5 et *15 sont des coeffs
+				return (o1.getNbMain()+o1.getVisible().size()*5+o1.getNbCachees()*15)-(o2.getNbMain()+o2.getVisible().size()*5+o2.getNbCachees()*15);
+			}
+		});
+		return (adversaires.get(0));
 	}
 
 }

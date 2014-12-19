@@ -63,11 +63,6 @@ public class RandomIA extends IA {
 	}
 
 	@Override
-	public int choisirCachee() {
-		return (int)(Math.random()*joueur.getNbCachees());
-	}
-
-	@Override
 	protected Adversaire choisirAdversaire() {
 		return adversaires.get((int)(Math.random()*adversaires.size()));
 	}

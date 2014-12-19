@@ -18,4 +18,8 @@ public abstract class IA extends AbstractStrategie {
 	}
 	
 
+	@Override
+	public int choisirCachee() {
+		return (int)(Math.random()*joueur.getNbCachees());
+	}
 }
