@@ -2,6 +2,7 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -65,10 +66,12 @@ public class Jeu {
 	 */
 	public void start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
-		//TODO : suite du jeu
+		do {
+			joueurCourant = tourJeu.next();
+		}while(true);
 	}
 	
-	public TourJeu getTourJeu() {
+	public Iterator<Joueur> getTourJeu() {
 		return tourJeu;
 	}
 	
