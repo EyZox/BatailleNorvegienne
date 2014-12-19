@@ -3,6 +3,8 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.Collection;
 import java.util.List;
 
+import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.Strategie;
+
 public abstract class AbstractStrategie implements Strategie {
 
 	protected List<Adversaire> adversaires;
