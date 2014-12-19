@@ -2,7 +2,7 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 
 
-public class Carte {
+public class Carte implements Comparable<Carte>{
 	private int valeur;
 
 	public Carte(int valeur) {
@@ -35,6 +35,11 @@ public class Carte {
 	}
 	
 	public void onPlaced(Jeu jeu, int nb) {}
+	
+	@Override
+	public int compareTo(Carte o) {
+		return valeur-o.valeur;
+	}
 	
 	
 }

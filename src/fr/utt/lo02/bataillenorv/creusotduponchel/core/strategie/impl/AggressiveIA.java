@@ -1,6 +1,7 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Adversaire;
@@ -12,24 +13,18 @@ public class AggressiveIA extends IA {
 
 	@Override
 	public CoupleEchangeCarte choisirCarteEchanger() {
-		int plusPetiteCarteVisible = Integer.MAX_VALUE;
-		int plusGrandeCarteMain = 0;
-		int indexVisibles = 0;
-		int indexMain = 0;
-		for (int i = 0; i < 3; i++) {
-			if (joueur.getMain().get(i).getValeur() < plusPetiteCarteVisible) {
-				indexVisibles = i;
-				plusPetiteCarteVisible = joueur.getMain().get(i).getValeur();
-			}
-			if (joueur.getVisibles().get(i).getValeur() > plusGrandeCarteMain) {
-				indexMain = i;
-				plusGrandeCarteMain = joueur.getVisibles().get(i).getValeur();
-			}
-		}
-		if (plusPetiteCarteVisible > plusGrandeCarteMain)
+		
+		//On trie les cartes
+		Collections.sort(joueur.getMain());
+		Collections.sort(joueur.getVisibles());
+		
+		//On check si la plus grande carte de la main est supérieur a la plus petite carte visible
+		if(joueur.getMain().get(joueur.getMain().size()-1).compareTo(joueur.getVisibles().get(0)) > 0) {
+			//On echange
+			return new CoupleEchangeCarte(joueur.getMain().get(joueur.getMain().size()-1), joueur.getVisibles().get(0));
+		}else {
 			return null;
-		return new CoupleEchangeCarte(joueur.getMain().get(indexMain), joueur
-				.getVisibles().get(indexVisibles));
+		}
 	}
 
 	@Override
