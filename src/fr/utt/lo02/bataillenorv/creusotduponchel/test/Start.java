@@ -13,7 +13,7 @@ public class Start {
 	public static void main(String[] args) {
 		//Construction de la liste des joueurs
 		List<Joueur> joueurs = new LinkedList<>();
-		//joueurs.add(new Joueur(new ConsoleStrategie(), "Moi"));
+		if(args.length > 0) joueurs.add(new Joueur(new ConsoleStrategie(), args[0]));
 		joueurs.add(new Joueur(new RandomIA()));
 		joueurs.add(new Joueur(new AggressiveIA()));
 		joueurs.add(new Joueur(new RandomIA()));
