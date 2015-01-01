@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-public class Jeu {
+public class Jeu extends Observable{
 	private TourJeu tourJeu;
 	private Joueur joueurCourant;
 	private List<Joueur> listeDeJoueurs;
@@ -78,7 +79,6 @@ public class Jeu {
 				System.out.println("Gagnant : "+potentielGagnant);
 				return potentielGagnant;
 			}
-			
 		}while(true);
 	}
 	
@@ -121,7 +121,7 @@ public class Jeu {
 		return tourJeu;
 	}
 	
-	public Collection<Carte> getTas() {
+	public LinkedList<Carte> getTas() {
 		return tas;
 	}
 }
