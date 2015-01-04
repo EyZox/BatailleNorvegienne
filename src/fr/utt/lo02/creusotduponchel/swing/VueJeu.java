@@ -14,7 +14,7 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
 public class VueJeu extends JPanel implements Observer {
 	private Jeu jeu;
 	private Joueur joueurCourant;
-	private JButton carteDuTas;
+	private JCarte carteDuTas;
 	private JPanel mainJoueurCourant;
 	private JPanel tas;
 	
@@ -22,17 +22,17 @@ public class VueJeu extends JPanel implements Observer {
 	public VueJeu(Jeu jeu) {
 		this.setLayout(new GridLayout());
 		this.jeu = jeu;
-		this.carteDuTas = new JButton("X");	
+		this.carteDuTas = new JCarte();	
 		this.mainJoueurCourant = new JPanel();
 		this.tas = new JPanel();
 		this.joueurCourant = this.jeu.getTourJeu().getJoueurCourant();
 		// get tas renvoie une collection et non une linkedList (changé)
 		if (this.jeu.getTas().size() != 0) {
-			carteDuTas = new JButton(String.valueOf(this.jeu.getTas().getLast().getValeur()));		
+			carteDuTas = new JCarte(this.jeu.getTas().getLast());		
 		}
 		int nbCartes=this.joueurCourant.getMain().size();
 		for(int i =0;i<nbCartes;i++)
-			this.mainJoueurCourant.add(new JButton(String.valueOf(this.joueurCourant.getMain().get(i).getValeur())));
+			this.mainJoueurCourant.add(new JCarte(this.joueurCourant.getMain().get(i)));
 		this.tas.add(new JLabel("tas"));
 		this.tas.add(carteDuTas);
 		this.add(tas);
@@ -46,15 +46,15 @@ public class VueJeu extends JPanel implements Observer {
 		this.tas.removeAll();
 		System.out.println("ok");
 		this.jeu = (Jeu)arg0;
-		this.carteDuTas = new JButton("X");	
+		this.carteDuTas.setCarte(null);	
 		this.joueurCourant = this.jeu.getTourJeu().getJoueurCourant();
 		
 		if (this.jeu.getTas().size() != 0) {
-			carteDuTas = new JButton(String.valueOf(this.jeu.getTas().getLast().getValeur()));		
+			carteDuTas.setCarte(this.jeu.getTas().getLast());		
 		}
 		int nbCartes=this.joueurCourant.getMain().size();
 		for(int i =0;i<nbCartes;i++)
-			this.mainJoueurCourant.add(new JButton(String.valueOf(this.joueurCourant.getMain().get(i).getValeur())));
+			this.mainJoueurCourant.add(new JCarte(this.joueurCourant.getMain().get(i)));
 		this.tas.add(new JLabel("tas"));
 		this.tas.add(carteDuTas);
 		

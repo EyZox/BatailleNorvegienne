@@ -18,7 +18,7 @@ public class Start {
 		List<Joueur> joueurs = new LinkedList<>();
 		if(args.length > 0) 
 			joueurs.add(new Joueur(new ConsoleStrategie(), args[0]));
-		joueurs.add(new Joueur(new ConsoleStrategie(), "moi"));
+	//	joueurs.add(new Joueur(new ConsoleStrategie(), "moi"));
 		joueurs.add(new Joueur(new RandomIA()));
 		joueurs.add(new Joueur(new AggressiveIA()));
 		joueurs.add(new Joueur(new RandomIA()));
