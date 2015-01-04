@@ -1,12 +1,10 @@
 package fr.utt.lo02.creusotduponchel.swing;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

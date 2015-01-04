@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Jeu;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
@@ -12,6 +15,7 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl.AggressiveI
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl.ConsoleStrategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.impl.RandomIA;
 import fr.utt.lo02.creusotduponchel.swing.VueJeu;
+import fr.utt.lo02.creusotduponchel.swing.VueJoueur;
 import fr.utt.lo02.creusotduponchel.swing.strategie.impl.VueStrategie;
 
 public class StartUI {
@@ -41,6 +45,15 @@ public class StartUI {
 		f.getContentPane().setLayout(new BorderLayout());
 		f.getContentPane().add(j, BorderLayout.CENTER);
 		f.getContentPane().add(new VueStrategie(jHumain), BorderLayout.SOUTH);
+		JPanel vueAdversaires = new JPanel();
+		vueAdversaires.setLayout(new BoxLayout(vueAdversaires, BoxLayout.X_AXIS));
+		
+		for(Joueur player : joueurs) {
+			if(player != jHumain) {
+				vueAdversaires.add(new VueJoueur(player));
+			}
+		}
+		f.getContentPane().add(new JScrollPane(vueAdversaires), BorderLayout.NORTH);
 		f.pack();
 		f.setVisible(true);
 		
