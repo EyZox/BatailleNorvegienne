@@ -2,14 +2,13 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Observable;
 import java.util.Queue;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.IA;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.Strategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
-public class Joueur extends Observable{
+public class Joueur {
 	private String nom;
 	private ArrayList<Carte> main;
 	private ArrayList<Carte> cachees;

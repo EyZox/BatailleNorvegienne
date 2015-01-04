@@ -29,7 +29,7 @@ public class VueJoueur extends JPanel implements Observer {
 	@Override
 	public void update(Observable j, Object arg) {
 		// TODO Auto-generated method stub
-		this.joueur = (Joueur)j;
+		//this.joueur = (Joueur)j;
 		int nbcartes = joueur.getMain().size();
 		this.removeAll();
 		listeDeCartes.removeAll(listeDeCartes);

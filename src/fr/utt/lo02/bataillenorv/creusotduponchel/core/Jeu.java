@@ -70,10 +70,13 @@ public class Jeu extends Observable{
 	public Joueur start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
 		for(Joueur j : listeDeJoueurs) {
-			j.echanger();
+			j.echanger();				
 		}
 		do {
 			joueurCourant = tourJeu.next();
+			//actualisation a chaque tour de jeu
+			this.setChanged();
+			this.notifyObservers();
 			Joueur potentielGagnant = processCarteJouees(joueurCourant, joueurCourant.poserCartes(tas.isEmpty()?null:tas.getLast()));
 			if(potentielGagnant != null) {
 				System.out.println("Gagnant : "+potentielGagnant);
