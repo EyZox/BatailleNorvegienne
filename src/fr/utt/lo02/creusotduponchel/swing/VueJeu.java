@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Jeu;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
 
-public class VueJeu extends JFrame implements Observer {
+public class VueJeu extends JPanel implements Observer {
 	private Jeu jeu;
 	private Joueur joueurCourant;
 	private JButton carteDuTas;
@@ -22,7 +22,6 @@ public class VueJeu extends JFrame implements Observer {
 	
 
 	public VueJeu(Jeu jeu) {
-		super("Bataille Norvegienne");
 		this.setLayout(new GridLayout());
 		this.jeu = jeu;
 		this.carteDuTas = new JButton("X");	
@@ -40,8 +39,6 @@ public class VueJeu extends JFrame implements Observer {
 		this.tas.add(carteDuTas);
 		this.add(tas);
 		this.add(mainJoueurCourant);
-		
-		this.pack();
 	}
 
 	@Override
@@ -65,7 +62,6 @@ public class VueJeu extends JFrame implements Observer {
 		
 		this.add(tas);
 		this.add(mainJoueurCourant);
-		this.pack();
 	}
 
 }
