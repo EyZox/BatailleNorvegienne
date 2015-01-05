@@ -10,7 +10,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
 
@@ -24,6 +23,7 @@ public class VueJoueur extends JPanel implements Observer {
 	
 	public VueJoueur(Joueur joueur) {
 		this.joueur = joueur;
+		if(this.joueur != null) this.joueur.addObserver(this);
 		visibles =  new JCarte[] { new JCarte(), new JCarte(), new JCarte() };
 		nbCachees = new JLabel("0");
 		nbMain = new JLabel("0");
@@ -64,6 +64,7 @@ public class VueJoueur extends JPanel implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		for(int i=0; i<joueur.getVisibles().size();i++) {
 			visibles[i].setCarte(joueur.getVisibles().get(i));
+			visibles[i].setEnabled(false);
 		}
 		
 		for(int i = joueur.getVisibles().size(); i < 3; i++) {

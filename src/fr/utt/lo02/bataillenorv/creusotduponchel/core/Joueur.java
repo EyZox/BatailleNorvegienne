@@ -2,13 +2,14 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Observable;
 import java.util.Queue;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.IA;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.strategie.Strategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
 
-public class Joueur {
+public class Joueur extends Observable{
 	private String nom;
 	private ArrayList<Carte> main;
 	private ArrayList<Carte> cachees;
@@ -58,8 +59,14 @@ public class Joueur {
 				joueur.main.add(pioche.poll());
 				joueur.cachees.add(pioche.poll());
 				joueur.visibles.add(pioche.poll());
+				joueur.fireUpdate();
 			}
 		}
+	}
+	
+	public void fireUpdate() {
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -69,6 +76,7 @@ public class Joueur {
 	void piocher(Carte carte){
 		System.out.println(getNom() + " a pioché la carte "+carte);
 		this.main.add(carte);
+		fireUpdate();
 	}
 
 	/**
@@ -87,7 +95,9 @@ public class Joueur {
 				
 				System.out.println(getNom() + " a echangé la carte "+cartes.getMain()+" de sa main avec la carte "+cartes.getVisible()+" de ses cartes visibles");
 			}
+			fireUpdate();
 		}while(cartes !=null);
+		
 	}
 
 	/**
@@ -96,6 +106,7 @@ public class Joueur {
 	void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
+		fireUpdate();
 		System.out.println(getNom()+" a pioché ses cartes visibles");
 	}
 
@@ -109,6 +120,7 @@ public class Joueur {
 		}while(indice<0 || indice>cachees.size());
 		Carte c = this.cachees.remove(indice);
 		System.out.println(getNom()+ " a pris la carte cachee "+c);
+		fireUpdate();
 		return c;
 	}
 
@@ -120,6 +132,7 @@ public class Joueur {
 		this.main.addAll(tas);
 		tas.clear();
 		System.out.println(getNom()+" a ramassé le tas");
+		fireUpdate();
 	}
 
 	/**
@@ -165,6 +178,7 @@ public class Joueur {
 		
 		main.removeAll(choix);
 		System.out.println(getNom()+" joue les cartes "+choix);
+		fireUpdate();
 		return choix;
 	}
 	

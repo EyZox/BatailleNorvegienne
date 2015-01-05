@@ -26,6 +26,7 @@ public class VueStrategie extends JPanel implements Observer{
 	
 	public VueStrategie(Joueur joueur) {
 		this.joueur = joueur;
+		if(this.joueur != null) this.joueur.addObserver(this);
 		visibles = new JCarte[] { new JCarte(), new JCarte(), new JCarte() };
 		cachees = new JCarte[] { new JCarte(), new JCarte(), new JCarte() };
 		pMain = new JPanel();

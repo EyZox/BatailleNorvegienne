@@ -70,7 +70,9 @@ public class Jeu extends Observable{
 	public Joueur start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
 		for(Joueur j : listeDeJoueurs) {
-			j.echanger();				
+			j.echanger();
+			setChanged();
+			notifyObservers();
 		}
 		do {
 			joueurCourant = tourJeu.next();
@@ -82,6 +84,8 @@ public class Jeu extends Observable{
 				System.out.println("Gagnant : "+potentielGagnant);
 				return potentielGagnant;
 			}
+			setChanged();
+			notifyObservers();
 		}while(true);
 	}
 	
