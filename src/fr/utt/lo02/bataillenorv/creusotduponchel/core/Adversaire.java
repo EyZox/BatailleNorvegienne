@@ -62,10 +62,6 @@ public class Adversaire {
 	}
 
 	@Override
-	/**
-	 * Retourne une representation de l'objet sous forme de chaine de caracteres
-	 * @return un string representant l'objet
-	 */
 	public String toString() {
 		return joueur.getNom()+"[nb carte en main : "+getNbMain()+", carte visible : "+getVisible()+", nb carte cachees : "+getNbCachees();
 	}

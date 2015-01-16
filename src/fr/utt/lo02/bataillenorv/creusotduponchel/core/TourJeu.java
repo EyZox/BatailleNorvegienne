@@ -43,9 +43,6 @@ public class TourJeu implements Iterator<Joueur>, Cloneable{
 	}
 
 	@Override
-	/**
-	 * @return le joueur suivant
-	 */
 	public Joueur next() {
 		if(index >= joueurs.size()-1) index = -1;
 		return joueurs.get(++index);
