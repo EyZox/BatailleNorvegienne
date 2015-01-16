@@ -8,13 +8,15 @@ import javax.swing.JButton;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Carte;
 
 public class JCarte extends JButton {
-	
+
 	public static final Dimension DIMENSION = new Dimension(60,80);
 	
+
 	public JCarte() {
 		setCarte(null);
 	}
 	
+
 	public JCarte(Carte c) {
 		this();
 		setCarte(c);

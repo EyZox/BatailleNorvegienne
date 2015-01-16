@@ -1,7 +1,10 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
-
-
+/**
+ * Classe représentant une carte
+ * @author Alexandre
+ *
+ */
 public class Carte implements Comparable<Carte>{
 	private int valeur;
 
@@ -24,12 +27,17 @@ public class Carte implements Comparable<Carte>{
 	public int getValeur(){
 		return this.valeur;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return valeur+"";
 	}
 	
+	/**
+	 * Retourne faux dans cette classe. Methode surchargée dans la classe CarteDeux
+	 * @return faux 
+	 */
 	protected boolean bypass() {
 		return false;
 	}

@@ -1,4 +1,10 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
+
+/**
+ * Classe représentant la carte 1
+ * @author Alexandre
+ *
+ */
 public class CarteAs extends Carte {
 
 	public CarteAs() {

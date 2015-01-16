@@ -6,15 +6,38 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
+/**
+ * Classe représentant le jeu
+ * @author Alexandre
+ *
+ */
 public class Jeu extends Observable{
+	/**
+	 * Le tour de jeu est un iterateur qui parcours la liste des joueurs
+	 */
 	private TourJeu tourJeu;
+	/**
+	 * joueurCourant designe le joueur qui est en train de jouer
+	 */
 	private Joueur joueurCourant;
+	/**
+	 * listeDeJoueurs designe l'ensemble des joueurs
+	 */
 	private List<Joueur> listeDeJoueurs;
+	/**
+	 * pioche represente la pioche
+	 */
 	private LinkedList<Carte> pioche;
+	/**
+	 * tas represente le tas central sur lequel sont posees les cartes
+	 */
 	private LinkedList<Carte> tas;
 
 
-
+	/**
+	 * constructeur
+	 * @param listeDeJoueurs liste des joueurs affectees a l attribut du meme nom
+	 */
 	public Jeu(List<Joueur> listeDeJoueurs){
 		this.listeDeJoueurs=listeDeJoueurs;
 		tas = new LinkedList<>();
@@ -66,6 +89,7 @@ public class Jeu extends Observable{
 
 	/**
 	 * Lance une partie
+	 * @return le joueur gagnant
 	 */
 	public Joueur start() {
 		tourJeu.next().distribuer(listeDeJoueurs, pioche);
@@ -89,6 +113,12 @@ public class Jeu extends Observable{
 		}while(true);
 	}
 	
+	/**
+	 * procedes lorsque qu'un joueur joue une ou plusieurs cartes
+	 * @param joueur le joueur en question
+	 * @param cartesJouees la liste des cartes choisies par le joueur (toutes les cartes doivent etre identiques)
+	 * @return
+	 */
 	public Joueur processCarteJouees(Joueur joueur, Collection<Carte> cartesJouees) {
 		if(cartesJouees == null) {
 			joueur.ramasserTas(tas);
@@ -124,10 +154,18 @@ public class Jeu extends Observable{
 		return null;
 	}
 	
+	/**
+	 * Retourne le tour de jeu
+	 * @return le tour de jeu
+	 */
 	public TourJeu getTourJeu() {
 		return tourJeu;
 	}
 	
+	/**
+	 * Retourne le tas
+	 * @return le tas
+	 */
 	public LinkedList<Carte> getTas() {
 		return tas;
 	}

@@ -7,8 +7,15 @@ import java.util.List;
  *
  */
 public class Adversaire {
+	/**
+	 * le joueur en question
+	 */
 	private Joueur joueur;
-
+	
+	/**
+	 * constructeur avec un joueur en parametre
+	 * @param joueur initialise le joueur en question
+	 */
 	public Adversaire(Joueur joueur) {
 		super();
 		this.joueur = joueur;
@@ -46,11 +53,19 @@ public class Adversaire {
 		return joueur;
 	}
 	
+	/**
+	 * Retourne le nom de l'adversaire 
+	 * @return le nom de l'adversaire
+	 */
 	public String getNom() {
 		return joueur.getNom();
 	}
 
 	@Override
+	/**
+	 * Retourne une representation de l'objet sous forme de chaine de caracteres
+	 * @return un string representant l'objet
+	 */
 	public String toString() {
 		return joueur.getNom()+"[nb carte en main : "+getNbMain()+", carte visible : "+getVisible()+", nb carte cachees : "+getNbCachees();
 	}

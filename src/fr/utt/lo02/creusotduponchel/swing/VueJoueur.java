@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
 
 public class VueJoueur extends JPanel implements Observer {
-
+	
 	private Joueur joueur;
 	private JCarte[] visibles;
 	private JLabel nbCachees;

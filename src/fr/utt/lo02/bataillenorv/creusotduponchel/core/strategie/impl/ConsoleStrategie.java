@@ -11,14 +11,30 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.AbstractStrategie;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Adversaire;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Carte;
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte;
-
+/**
+ * classe qui fait office de strategie en etant l'interraction avec le joueur
+ * @author Alexandre
+ *
+ */
 public class ConsoleStrategie extends AbstractStrategie {
-
+	/**
+	 * classe representant un scanner pour que le joueur ne rentre pas autre chose qu'un int
+	 * @author Alexandre
+	 *
+	 */
 	private class ProtectedIntScanner {
 		Scanner sc;
+		/**
+		 * constructeur
+		 * @param is flux d'octet en entree
+		 */
 		ProtectedIntScanner(InputStream is) {
 			sc = new Scanner(is);
 		}
+		/**
+		 * lis un entier
+		 * @return l'entier entre par l'utilisateur
+		 */
 		public int nextInt() {
 			while(true)
 			try {
@@ -30,12 +46,18 @@ public class ConsoleStrategie extends AbstractStrategie {
 		}
 	}
 	private ProtectedIntScanner sc;
-
+	/**
+	 * constructeur
+	 */
 	public ConsoleStrategie() {
 		sc = new ProtectedIntScanner(System.in);
 	}
 
 	@Override
+	/**
+	 * fais choisir à l'utilisateur un couple (carte en main - carte visible) a echanger
+	 * @return le couple choisit
+	 */
 	public CoupleEchangeCarte choisirCarteEchanger() {
 		afficherJeuJoueur();
 		int main, visible;
@@ -54,6 +76,10 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
+	/**
+	 * fais choisir à l'utilisateur une ou plusieurs cartes a jouer
+	 * @return la liste des cartes choisies
+	 */
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Integer> choix = new ArrayList<>();
 		int main;
@@ -93,6 +119,10 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
+	/**
+	 * demande de choisir une carte cachee a prendre en main
+	 * @return l index de la carte a prendre (entre 0 et 2 inclus)
+	 */
 	public int choisirCachee() {
 		afficherCachees();
 		System.out.println("Choississez une carte cachée :");
@@ -100,6 +130,10 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
+	/**
+	 * choisit l'adversaire qui va ramasser le tas lorsqu'un as est posé
+	 * @return l'adversaire choisit
+	 */
 	protected Adversaire choisirAdversaire() {
 		afficherAdversaire();
 		System.out.println("Selectionner le nom d'un adversaire : ");
@@ -109,7 +143,10 @@ public class ConsoleStrategie extends AbstractStrategie {
 		}while(adv<0 || adv>=adversaires.size());
 		return adversaires.get(adv);
 	}
-
+	
+	/**
+	 * methode d'affichage du jeu complet du joueur
+	 */
 	private void afficherJeuJoueur() {
 		afficherAdversaire();
 		afficherMain();
@@ -117,14 +154,23 @@ public class ConsoleStrategie extends AbstractStrategie {
 		afficherCachees();
 	}
 
+	/**
+	 * methode d'affichage de la main
+	 */
 	private void afficherMain() {
 		System.out.println("Cartes en main :"+joueur.getMain());
 	}
 
+	/**
+	 * methode d'affichage des cartes visibles
+	 */
 	private void afficherVisibles() {
 		System.out.println("Cartes visibles :"+joueur.getVisibles());
 	}
 
+	/**
+	 * methode d'affichage des cartes cachees
+	 */
 	private void afficherCachees() {
 		System.out.print("Cartes cachées : [");
 		for(int i=0; i<joueur.getNbCachees(); i++) {
@@ -134,6 +180,9 @@ public class ConsoleStrategie extends AbstractStrategie {
 		System.out.println("]");
 	}
 
+	/**
+	 * methode d'affichage des adversaires
+	 */
 	private void afficherAdversaire() {
 		System.out.println("Adversaires :");
 		for(int i = 0; i<adversaires.size(); i++) {
@@ -141,6 +190,9 @@ public class ConsoleStrategie extends AbstractStrategie {
 		}
 	}
 
+	/**
+	 * methode d'affichage des cartes choisies pour etre posees
+	 */
 	private void afficherCarteChoisies(Collection<Integer> indiceCarteChoisies) {
 		System.out.print("Carte choisies (entre []): ");
 		for(int i = 0; i<joueur.getMain().size(); i++) {
