@@ -17,10 +17,6 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte
 public class AggressiveIA extends IA {
 
 	@Override
-	/**
-	 * choisit le meilleur couple possible a echanger
-	 * @return un couple (carte de la main - carte visible)
-	 */
 	public CoupleEchangeCarte choisirCarteEchanger() {
 
 		//On trie les cartes
@@ -37,10 +33,6 @@ public class AggressiveIA extends IA {
 	}
 
 	@Override
-	/**
-	 * choisit intelligemment la ou les cartes a poser (la plus petite carte posable)
-	 * @return la liste des cartes choisies 
-	 */
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Carte> choix = new ArrayList<>();
 		//on trie les cartes
@@ -57,10 +49,6 @@ public class AggressiveIA extends IA {
 	}
 
 	@Override
-	/**
-	 * choisit le joueur le plus proche de la victoire
-	 * retourne le joueur adverse choisit
-	 */
 	protected Adversaire choisirAdversaire() {
 		Collections.sort(adversaires, new Comparator<Adversaire>() {
 

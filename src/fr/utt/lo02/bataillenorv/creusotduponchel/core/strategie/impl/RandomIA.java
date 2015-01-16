@@ -18,10 +18,6 @@ import fr.utt.lo02.bataillenorv.creusotduponchel.core.wrapper.CoupleEchangeCarte
 public class RandomIA extends IA {
 
 	@Override
-	/**
-	 * choisit aleatoirement un couple a echanger
-	 * @return un couple (carte de la main - carte visible)
-	 */
 	public CoupleEchangeCarte choisirCarteEchanger() {
 		if(Math.random() < 0.5) return null;
 		return new CoupleEchangeCarte(
@@ -30,10 +26,6 @@ public class RandomIA extends IA {
 	}
 
 	@Override
-	/**
-	 * choisit aleatoirement une ou des cartes posables
-	 * @return la liste des cartes choisies 
-	 */
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		Set<Carte> possibilites = new HashSet<>();
 		//S'il n'y a pas de carte sur le tas
@@ -75,10 +67,6 @@ public class RandomIA extends IA {
 	}
 
 	@Override
-	/**
-	 * choisit aleatoirement un joueur 
-	 * retourne le joueur adverse choisit
-	 */
 	protected Adversaire choisirAdversaire() {
 		return adversaires.get((int)(Math.random()*adversaires.size()));
 	}

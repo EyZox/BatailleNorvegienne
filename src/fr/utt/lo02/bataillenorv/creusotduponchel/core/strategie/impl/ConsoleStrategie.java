@@ -54,10 +54,6 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	/**
-	 * fais choisir à l'utilisateur un couple (carte en main - carte visible) a echanger
-	 * @return le couple choisit
-	 */
 	public CoupleEchangeCarte choisirCarteEchanger() {
 		afficherJeuJoueur();
 		int main, visible;
@@ -76,10 +72,6 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	/**
-	 * fais choisir à l'utilisateur une ou plusieurs cartes a jouer
-	 * @return la liste des cartes choisies
-	 */
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Integer> choix = new ArrayList<>();
 		int main;
@@ -119,10 +111,6 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	/**
-	 * demande de choisir une carte cachee a prendre en main
-	 * @return l index de la carte a prendre (entre 0 et 2 inclus)
-	 */
 	public int choisirCachee() {
 		afficherCachees();
 		System.out.println("Choississez une carte cachée :");
@@ -130,10 +118,6 @@ public class ConsoleStrategie extends AbstractStrategie {
 	}
 
 	@Override
-	/**
-	 * choisit l'adversaire qui va ramasser le tas lorsqu'un as est posé
-	 * @return l'adversaire choisit
-	 */
 	protected Adversaire choisirAdversaire() {
 		afficherAdversaire();
 		System.out.println("Selectionner le nom d'un adversaire : ");
