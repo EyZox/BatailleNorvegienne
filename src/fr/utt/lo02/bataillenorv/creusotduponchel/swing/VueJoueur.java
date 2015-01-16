@@ -1,36 +1,64 @@
-package fr.utt.lo02.creusotduponchel.swing;
+package fr.utt.lo02.bataillenorv.creusotduponchel.swing;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.utt.lo02.bataillenorv.creusotduponchel.core.Joueur;
+import fr.utt.lo02.bataillenorv.creusotduponchel.swing.strategie.impl.ControllerStrategie;
 
 public class VueJoueur extends JPanel implements Observer {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Joueur joueur;
 	private JCarte[] visibles;
 	private JLabel nbCachees;
 	private JLabel nbMain;
+	private JButton designer;
+	
+	private ControllerStrategie ctrl;
 	
 	
-	public VueJoueur(Joueur joueur) {
+	public VueJoueur(Joueur joueur, ControllerStrategie ctrl) {
 		this.joueur = joueur;
+		this.ctrl = ctrl;
 		if(this.joueur != null) this.joueur.addObserver(this);
 		visibles =  new JCarte[] { new JCarte(), new JCarte(), new JCarte() };
 		nbCachees = new JLabel("0");
 		nbMain = new JLabel("0");
+		designer = new JButton("Designer");
 		build();
+		listeners();
 	}
 	
 	
+	private void listeners() {
+		designer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(ctrl==null) return;
+				ctrl.setInput(joueur);
+				
+			}
+		});
+		
+	}
+
+
 	private void build() {
 		this.setLayout(new GridBagLayout());
 		if(joueur != null) this.setBorder(BorderFactory.createTitledBorder(joueur.getNom()));
@@ -53,6 +81,8 @@ public class VueJoueur extends JPanel implements Observer {
 		this.add(nbCachees,c);
 		c.gridx=2; c.gridy=1;
 		this.add(nbMain,c);
+		c.gridx=1; c.gridy=2; c.gridwidth = GridBagConstraints.REMAINDER;
+		this.add(designer,c);
 		
 		nbCachees.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
 		nbMain.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
@@ -79,36 +109,8 @@ public class VueJoueur extends JPanel implements Observer {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
 		f.setVisible(true);
-		f.setContentPane(new VueJoueur(null));
+		f.setContentPane(new VueJoueur(null,null));
 		f.pack();
 	}
-
-	/*
-	private ArrayList<JButton> listeDeCartes;
-
-	public VueJoueur(Joueur j) {
-		this.joueur = j;
-		int nbcartes = j.getMain().size();
-		this.setLayout(new GridLayout(1,nbcartes));
-		for (int i = 0; i < nbcartes; i++) {
-			listeDeCartes.add(new VueCarte(j.getMain().get(i)));
-			this.add(listeDeCartes.get(i));
-		}
-	}
-
-	@Override
-	public void update(Observable j, Object arg) {
-		// TODO Auto-generated method stub
-		//this.joueur = (Joueur)j;
-		int nbcartes = joueur.getMain().size();
-		this.removeAll();
-		listeDeCartes.removeAll(listeDeCartes);
-		for (int i = 0; i < nbcartes; i++) {			
-			listeDeCartes.add(new VueCarte(joueur.getMain().get(i)));
-			this.add(listeDeCartes.get(i));
-		}
-		this.validate();
-	}
-	*/
 
 }

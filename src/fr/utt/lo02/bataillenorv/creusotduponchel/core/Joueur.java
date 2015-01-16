@@ -17,7 +17,7 @@ public class Joueur extends Observable{
 	private Strategie strategie;
 
 	/**
-	 * CrÃ©e un joueur avec une strategie et un nom
+	 * Crée un joueur avec une strategie et un nom
 	 * @param strategie strategie du joueur
 	 * @param nom nom du joueur
 	 */
@@ -71,10 +71,10 @@ public class Joueur extends Observable{
 
 	/**
 	 * Ajoute une carte dans la main du joueur
-	 * @param carte la carte piochÃ©e
+	 * @param carte la carte piochée
 	 */
 	void piocher(Carte carte){
-		System.out.println(getNom() + " a piochÃ© la carte "+carte);
+		System.out.println(getNom() + " a pioché la carte "+carte);
 		this.main.add(carte);
 		fireUpdate();
 	}
@@ -93,7 +93,7 @@ public class Joueur extends Observable{
 				this.visibles.remove(cartes.getVisible());
 				this.main.add(cartes.getVisible());
 				
-				System.out.println(getNom() + " a echangÃ© la carte "+cartes.getMain()+" de sa main avec la carte "+cartes.getVisible()+" de ses cartes visibles");
+				System.out.println(getNom() + " a echangé la carte "+cartes.getMain()+" de sa main avec la carte "+cartes.getVisible()+" de ses cartes visibles");
 			}
 			fireUpdate();
 		}while(cartes !=null);
@@ -101,13 +101,13 @@ public class Joueur extends Observable{
 	}
 
 	/**
-	 * RecupÃ¨re les cartes visibles dans sa main
+	 * Recupère les cartes visibles dans sa main
 	 */
 	void piocherVisibles(){
 		this.main.addAll(visibles);
 		this.visibles.clear();
 		fireUpdate();
-		System.out.println(getNom()+" a piochÃ© ses cartes visibles");
+		System.out.println(getNom()+" a pioché ses cartes visibles");
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Joueur extends Observable{
 	void ramasserTas(Collection<Carte> tas){
 		this.main.addAll(tas);
 		tas.clear();
-		System.out.println(getNom()+" a ramassÃ© le tas");
+		System.out.println(getNom()+" a ramassé le tas");
 		fireUpdate();
 	}
 
@@ -148,9 +148,9 @@ public class Joueur extends Observable{
 	}
 
 	/**
-	 * Retourne l'ensemble des cartes placÃ©es par le joueur
-	 * @param derniereCarte la derniÃ¨re carte sur le tas
-	 * @return les cartes placÃ©es par le joueur ou null s'il ne place aucune carte
+	 * Retourne l'ensemble des cartes placées par le joueur
+	 * @param derniereCarte la dernière carte sur le tas
+	 * @return les cartes placées par le joueur ou null s'il ne place aucune carte
 	 */
 	Collection<Carte> poserCartes(Carte derniereCarte) {
 		List<Carte> choix = null;
@@ -213,8 +213,8 @@ public class Joueur extends Observable{
 	}
 
 	/**
-	 * Retourne le nombre de carte que le joueur possÃ¨de face cachÃ©e
-	 * @return le nombre de carte face cachÃ©e
+	 * Retourne le nombre de carte que le joueur possède face cachée
+	 * @return le nombre de carte face cachée
 	 */
 	public int getNbCachees() {
 		return cachees.size();

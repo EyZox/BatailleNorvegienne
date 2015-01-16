@@ -2,7 +2,7 @@ package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 import java.util.List;
 /**
- * Classe permettant de restreindre la visibilitÃ© de certains Ã©lÃ©ment d'un joueur
+ * Classe permettant de restreindre la visibilité de certains élément d'un joueur
  * @author Alexandre
  *
  */
@@ -30,8 +30,8 @@ public class Adversaire {
 	}
 	
 	/**
-	 * Retourne le nombre de carte que l'adversaire possÃ¨de face cachÃ©e
-	 * @return le nombre de carte face cachÃ©e
+	 * Retourne le nombre de carte que l'adversaire possède face cachée
+	 * @return le nombre de carte face cachée
 	 */
 	public int getNbCachees() {
 		return joueur.getNbCachees();

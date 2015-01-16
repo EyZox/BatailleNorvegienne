@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Classe reprÃ©sentant le jeu
+ * Classe représentant le jeu
  * @author Alexandre
  *
  */
@@ -168,5 +168,13 @@ public class Jeu extends Observable{
 	 */
 	public LinkedList<Carte> getTas() {
 		return tas;
+	}
+	
+	/**
+	 * Retourne la pioche
+	 * @return la pioche
+	 */
+	public LinkedList<Carte> getPioche() {
+		return pioche;
 	}
 }

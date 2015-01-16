@@ -1,6 +1,9 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
+
+
+
 /**
- * Classe reprÃ©sentant la carte 8
+ * Classe représentant la carte 8
  * @author Alexandre
  *
  */

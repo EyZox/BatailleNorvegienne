@@ -40,7 +40,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 			try {
 				return sc.nextInt();
 			}catch(InputMismatchException e) {
-				System.err.println("Veuillez entrer un indice numÃ©rique");
+				System.err.println("Veuillez entrer un indice numérique");
 				sc.nextLine();
 			}
 		}
@@ -75,7 +75,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 	public List<Carte> choisirCartesAPoser(Carte derniereCarte) {
 		List<Integer> choix = new ArrayList<>();
 		int main;
-		System.out.println("DerniÃ¨re carte sur le tas : "+derniereCarte);
+		System.out.println("Dernière carte sur le tas : "+derniereCarte);
 		System.out.println("Selectionner une carte de votre main (<0 pour ne rien poser)");
 		do {
 			afficherCarteChoisies(choix);
@@ -113,7 +113,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 	@Override
 	public int choisirCachee() {
 		afficherCachees();
-		System.out.println("Choississez une carte cachÃ©e :");
+		System.out.println("Choississez une carte cachée :");
 		return sc.nextInt();
 	}
 
@@ -156,7 +156,7 @@ public class ConsoleStrategie extends AbstractStrategie {
 	 * methode d'affichage des cartes cachees
 	 */
 	private void afficherCachees() {
-		System.out.print("Cartes cachÃ©es : [");
+		System.out.print("Cartes cachées : [");
 		for(int i=0; i<joueur.getNbCachees(); i++) {
 			System.out.print("X");
 			if(i<joueur.getNbCachees()-1)System.out.print(",");

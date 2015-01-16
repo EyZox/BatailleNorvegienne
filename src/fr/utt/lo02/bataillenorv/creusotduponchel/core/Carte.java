@@ -1,7 +1,7 @@
 package fr.utt.lo02.bataillenorv.creusotduponchel.core;
 
 /**
- * Classe reprÃ©sentant une carte
+ * Classe représentant une carte
  * @author Alexandre
  *
  */
@@ -12,7 +12,7 @@ public class Carte implements Comparable<Carte>{
 		this.valeur = valeur;
 	}
 	/**
-	 * Retourne true si la carte passÃ© en parametre peut Ãªtre posÃ© par dessus la carte
+	 * Retourne true si la carte passé en parametre peut être posé par dessus la carte
 	 * @param carte la carte a placer au dessus
 	 * @return true si possible, false si impossible
 	 */
@@ -35,7 +35,7 @@ public class Carte implements Comparable<Carte>{
 	}
 	
 	/**
-	 * Retourne faux dans cette classe. Methode surchargÃ©e dans la classe CarteDeux
+	 * Retourne faux dans cette classe. Methode surchargée dans la classe CarteDeux
 	 * @return faux 
 	 */
 	protected boolean bypass() {

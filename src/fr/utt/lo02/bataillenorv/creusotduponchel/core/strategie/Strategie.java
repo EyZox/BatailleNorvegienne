@@ -29,7 +29,7 @@ public interface Strategie {
 	 */
 	int choisirCachee();
 	/**
-	 * choisit le joueur adverse lorsqu'un as est posÃ©
+	 * choisit le joueur adverse lorsqu'un as est posé
 	 * @return le joueur adverse choisit
 	 */
 	Joueur choisirJoueur();
